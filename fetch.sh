@@ -3,8 +3,10 @@ set -euo pipefail
 IFS=$'\n\t'
 
 echo "Adding key"
-echo "$PRIVATE_KEY" > .private
-export GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i .private"
+export KEY_FILE="$(dirname "$(realpath "$0")")/.private"
+echo "$PRIVATE_KEY" > $KEY_FILE
+export GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i $KEY_FILE"
+ls -la $KEY_FILE
 
 echo "Cleaning workspace"
 [[ -d mendeley-api-changes/ ]] && rm -rf mendeley-api-changes/
