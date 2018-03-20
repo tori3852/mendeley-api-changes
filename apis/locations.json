@@ -1,0 +1,125 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "Location"
+          },
+          "method": "GET",
+          "nickname": "getLocations",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "First few characters of city name",
+              "name": "prefix",
+              "paramType": "query",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "20",
+              "description": "Max results to return (up to 100)",
+              "format": "int32",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "integer"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-location.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Found locations"
+            },
+            {
+              "code": 400,
+              "message": "Prefix missing or too short"
+            }
+          ],
+          "summary": "<b>V1</b> - Suggest locations for given prefix",
+          "type": "array"
+        }
+      ],
+      "path": "/locations"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getLocation",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "UUID of the location to retrieve",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-location.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Location found"
+            },
+            {
+              "code": 404,
+              "message": "Location not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Get location by ID",
+          "type": "Location"
+        }
+      ],
+      "path": "/locations/{id}"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "Location": {
+      "id": "Location",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "latitude": {
+          "format": "float",
+          "type": "number"
+        },
+        "longitude": {
+          "format": "float",
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/locations",
+  "swaggerVersion": "1.2"
+}

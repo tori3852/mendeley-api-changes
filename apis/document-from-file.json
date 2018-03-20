@@ -1,0 +1,332 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "*/*"
+          ],
+          "method": "POST",
+          "nickname": "createDocumentFromFileUpload",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "The content disposition, including the filename (see RFC 1806)",
+              "name": "Content-Disposition",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The media type of the file",
+              "name": "Content-Type",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "To create a group document from a file, add the URL of the group to add this file to. This should have relation \"group\" (see RFC 5988)",
+              "name": "Link",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The file to upload",
+              "name": "file",
+              "paramType": "body",
+              "required": true,
+              "type": "file"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-document.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Document created.  The URL of the new document can be found in the Location header."
+            },
+            {
+              "code": 400,
+              "message": "The document title is longer than 256 characters or empty."
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            }
+          ],
+          "summary": "<b>V1</b> - Create a document from an uploaded file",
+          "type": "UserDocument"
+        }
+      ],
+      "path": "/documents"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "Person": {
+      "id": "Person",
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "scopus_author_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "last_name"
+      ]
+    },
+    "UUID": {
+      "id": "UUID",
+      "properties": {
+        "leastSignificantBits": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "mostSignificantBits": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "UserDocument": {
+      "id": "UserDocument",
+      "properties": {
+        "abstract": {
+          "type": "string"
+        },
+        "accessed": {
+          "type": "string"
+        },
+        "authored": {
+          "type": "boolean"
+        },
+        "authors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "chapter": {
+          "type": "string"
+        },
+        "citation_key": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "confirmed": {
+          "type": "boolean"
+        },
+        "country": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "day": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "department": {
+          "type": "string"
+        },
+        "edition": {
+          "type": "string"
+        },
+        "editors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "file_attached": {
+          "type": "boolean"
+        },
+        "folder_uuids": {
+          "items": {
+            "$ref": "UUID"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "genre": {
+          "type": "string"
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifiers": {
+          "$ref": "Map[com.mendeley.documents.api.IdentifierType,java.lang.String]"
+        },
+        "institution": {
+          "type": "string"
+        },
+        "issue": {
+          "type": "string"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "language": {
+          "type": "string"
+        },
+        "last_modified": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "month": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "string"
+        },
+        "patent_application_number": {
+          "type": "string"
+        },
+        "patent_legal_status": {
+          "type": "string"
+        },
+        "patent_owner": {
+          "type": "string"
+        },
+        "private_publication": {
+          "type": "boolean"
+        },
+        "profile_id": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean"
+        },
+        "reprint_edition": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "series": {
+          "type": "string"
+        },
+        "series_editor": {
+          "type": "string"
+        },
+        "series_number": {
+          "type": "string"
+        },
+        "short_title": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_type": {
+          "type": "string"
+        },
+        "starred": {
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "translators": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "type": {
+          "$ref": "com.mendeley.documents.api.DocumentType",
+          "enum": [
+            "journal",
+            "book",
+            "generic",
+            "book_section",
+            "conference_proceedings",
+            "working_paper",
+            "report",
+            "web_page",
+            "thesis",
+            "magazine_article",
+            "statute",
+            "patent",
+            "newspaper_article",
+            "computer_program",
+            "hearing",
+            "television_broadcast",
+            "encyclopedia_article",
+            "case",
+            "film",
+            "bill"
+          ]
+        },
+        "user_context": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "string"
+        },
+        "websites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "year": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title",
+        "type"
+      ]
+    }
+  },
+  "produces": null,
+  "resourcePath": "/document-from-file",
+  "swaggerVersion": "1.2"
+}

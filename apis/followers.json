@@ -1,0 +1,263 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-follow-request.1+json"
+          ],
+          "method": "POST",
+          "nickname": "createFollow",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "FollowRequest"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-follow.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Follower relationship successfully created"
+            },
+            {
+              "code": 400,
+              "message": "Bad Request"
+            },
+            {
+              "code": 422,
+              "message": "Invalid Request"
+            }
+          ],
+          "summary": "<b>V1</b> - Start following another profile",
+          "type": "Follow"
+        },
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "Follow"
+          },
+          "method": "GET",
+          "nickname": "getFollows",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "follower",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "followed",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "status",
+              "paramType": "query",
+              "required": false,
+              "type": "com.mendeley.follower.api.Follow$Status"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The sort order",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-follow.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Found follower information"
+            },
+            {
+              "code": 400,
+              "message": "Bad Request"
+            }
+          ],
+          "summary": "<b>V1</b> - Get follower information",
+          "type": "array"
+        }
+      ],
+      "path": "/followers"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-follow-acceptance.1+json"
+          ],
+          "method": "PATCH",
+          "nickname": "acceptFollowRequest",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "FollowAcceptance"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-follow.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Follow request accepted"
+            },
+            {
+              "code": 404,
+              "message": "Follow request not found"
+            },
+            {
+              "code": 422,
+              "message": "Follow acceptance invalid"
+            }
+          ],
+          "summary": "<b>V1</b> - Accept a pending follow request",
+          "type": "Follow"
+        },
+        {
+          "authorizations": {},
+          "method": "DELETE",
+          "nickname": "removeFollowRelationship",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "ID of the follow relationship. This is different from the Followee's or the Follower's ID.",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Follow relationship or request successfully removed"
+            },
+            {
+              "code": 400,
+              "message": "Bad Request"
+            },
+            {
+              "code": 403,
+              "message": "Follow relationship previously accepted and cannot be removed"
+            },
+            {
+              "code": 404,
+              "message": "Follow relationship or request not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Stop following a profile, cancel a follow request, or reject a follow request",
+          "type": "void"
+        }
+      ],
+      "path": "/followers/{id}"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "Follow": {
+      "description": "",
+      "id": "Follow",
+      "properties": {
+        "followed_id": {
+          "type": "string"
+        },
+        "follower_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "com.mendeley.follower.api.Follow$Status",
+          "enum": [
+            "following",
+            "pending"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "follower_id",
+        "followed_id",
+        "status"
+      ]
+    },
+    "FollowAcceptance": {
+      "description": "",
+      "id": "FollowAcceptance",
+      "properties": {
+        "status": {
+          "$ref": "com.mendeley.follower.api.Follow$Status",
+          "enum": [
+            "following",
+            "pending"
+          ]
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    "FollowRequest": {
+      "id": "FollowRequest",
+      "properties": {
+        "followed": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/followers",
+  "swaggerVersion": "1.2"
+}

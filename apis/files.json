@@ -1,0 +1,301 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "File"
+          },
+          "method": "GET",
+          "nickname": "getFiles",
+          "notes": "Gets a set of files.  At most one of document ID and group ID can be supplied.  If neither is supplied, then documents for the logged-in user are returned.",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "The document ID",
+              "name": "document_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The catalog document ID",
+              "name": "catalog_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The group ID",
+              "name": "group_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only files added since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "added_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns files deleted since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "deleted_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns files that have been trashed.",
+              "name": "include_trashed",
+              "paramType": "query",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-file.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Files found"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Group or document not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Get files (Deprecated)",
+          "type": "array",
+          "uniqueItems": true
+        },
+        {
+          "authorizations": {},
+          "method": "POST",
+          "nickname": "uploadOrLinkFile",
+          "notes": "This endpoint supports both: directly uploading a file and linking a file content ticket to a file. Owing to a Swagger limitation it is not possible to test the linking functionality from this page.Please see details on how to test linking <a href=\"http://dev.mendeley.com/methods/?shell#linking-a-file-content-to-a-file\">here</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "The content disposition, including the filename (see RFC 1806)",
+              "name": "Content-Disposition",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The URL of the document.  This should have relation \"document\" (see RFC 5988)",
+              "name": "Link",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The file to upload",
+              "name": "file",
+              "paramType": "body",
+              "required": true,
+              "type": "file"
+            },
+            {
+              "allowMultiple": false,
+              "name": "Content-Type",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-file.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Created, the file has been successfully uploaded and the Location header will contain the file download URL"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            },
+            {
+              "code": 408,
+              "message": "Client timeout"
+            },
+            {
+              "code": 413,
+              "message": "File is too large"
+            },
+            {
+              "code": 499,
+              "message": "Client data stream prematurely terminated"
+            }
+          ],
+          "summary": "<b>V1</b> - Upload a file to a user document or linking file content ticket to a file (Deprecated)",
+          "type": "File"
+        }
+      ],
+      "path": "/files"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "DELETE",
+          "nickname": "deleteFile",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "File ID",
+              "name": "file_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Success, the file is deleted"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "File not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Delete a file (Deprecated)",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "downloadFile",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "File ID",
+              "name": "file_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 303,
+              "message": "Success, the Location header will contain the file download URL"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "File not found"
+            },
+            {
+              "code": 451,
+              "message": "Blocked for legal reasons"
+            }
+          ],
+          "summary": "<b>V1</b> - Download a file (Deprecated)",
+          "type": "void"
+        }
+      ],
+      "path": "/files/{file_id}"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "File": {
+      "id": "File",
+      "properties": {
+        "catalog_id": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "document_id": {
+          "type": "string"
+        },
+        "file_name": {
+          "type": "string"
+        },
+        "filehash": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mime_type": {
+          "type": "string"
+        },
+        "size": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/files",
+  "swaggerVersion": "1.2"
+}

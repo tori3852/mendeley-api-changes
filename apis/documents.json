@@ -1,0 +1,1437 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-document.1+json"
+          ],
+          "method": "POST",
+          "nickname": "createDocument",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "NewUserDocument"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-document.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Document created.  The URL of the new document can be found in the Location header."
+            },
+            {
+              "code": 400,
+              "message": "The document is invalid."
+            }
+          ],
+          "summary": "<b>V1</b> - Create a document",
+          "type": "UserDocument"
+        },
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "UserDocument"
+          },
+          "method": "GET",
+          "nickname": "getDocuments",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Group ID.  If not supplied, returns user documents",
+              "name": "group_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only documents modified since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "modified_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only documents deleted since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "deleted_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns documents belonging to this profile ID, that do not belong to any group",
+              "name": "profile_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns publications belonging to the profile ID",
+              "name": "authored",
+              "paramType": "query",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only documents that are starred",
+              "name": "starred",
+              "paramType": "query",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only documents that have at least one of the given tags",
+              "items": {
+                "type": "string"
+              },
+              "name": "tag",
+              "paramType": "query",
+              "required": false,
+              "type": "array"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only documents that have the given folder_id",
+              "name": "folder_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Whether to include trashed documents.  Defaults to false.",
+              "name": "include_trashed",
+              "paramType": "query",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "allowMultiple": false,
+              "description": "View",
+              "enum": [
+                "bib",
+                "patent",
+                "client",
+                "tags",
+                "all"
+              ],
+              "name": "view",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The sort order",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The field to sort on",
+              "enum": [
+                "last_modified",
+                "created",
+                "title"
+              ],
+              "name": "sort",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "Accept",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-document.1+json",
+            "application/x-bibtex",
+            "application/vnd.mendeley-document-with-files-list+json",
+            "application/vnd.mendeley-msword-bibliography+xml"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Documents found"
+            },
+            {
+              "code": 400,
+              "message": "Invalid view requested"
+            }
+          ],
+          "summary": "<b>V1</b> - Get documents",
+          "type": "array"
+        }
+      ],
+      "path": "/documents"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "File"
+          },
+          "method": "GET",
+          "nickname": "getFiles",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only files added since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "added_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns files deleted since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "deleted_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-document-file-list+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Files found"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Get document files",
+          "type": "array",
+          "uniqueItems": true
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "*/*"
+          ],
+          "method": "POST",
+          "nickname": "uploadOrLinkFile",
+          "notes": "This endpoint supports both: directly uploading a file and linking a file content ticket to a file. Owing to a Swagger limitation it is not possible to test the linking functionality from this page.Please see details on how to test linking <a href=\"http://dev.mendeley.com/methods/?shell#linking-a-file-content-to-a-file\">here</a><br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The content disposition, including the filename (see RFC 1806)",
+              "name": "Content-Disposition",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The file to upload",
+              "name": "file",
+              "paramType": "body",
+              "required": true,
+              "type": "file"
+            },
+            {
+              "allowMultiple": false,
+              "name": "Content-Type",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-document-file+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Created, the file has been successfully uploaded and the Location header will contain the file download URL"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            },
+            {
+              "code": 413,
+              "message": "File is too large"
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Upload a file to a user document; Linking file content ticket to a file",
+          "type": "File"
+        }
+      ],
+      "path": "/documents/v1/{document_id}/files"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "DELETE",
+          "nickname": "delete",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "File ID",
+              "name": "file_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Success, the file is deleted"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "File not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Delete a file",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "downloadFile",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "File ID",
+              "name": "file_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "Accept",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Success, the response contains file metadata"
+            },
+            {
+              "code": 303,
+              "message": "Success, the Location header will contain the file download URL"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "File not found"
+            },
+            {
+              "code": 451,
+              "message": "Blocked for legal reasons"
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Download a document file",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-document-file-patch+json"
+          ],
+          "method": "PATCH",
+          "nickname": "modify",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "File ID",
+              "name": "file_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "File patch",
+              "name": "body",
+              "paramType": "body",
+              "required": true,
+              "type": "FilePatch"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Success, the file has been modified"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "File not found"
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Modify a file's metadata",
+          "type": "void"
+        }
+      ],
+      "path": "/documents/v1/{document_id}/files/{file_id}"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "DELETE",
+          "nickname": "deleteDocument",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Document deleted"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Delete a document",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getDocument",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "View",
+              "enum": [
+                "bib",
+                "patent",
+                "client",
+                "tags",
+                "all"
+              ],
+              "name": "view",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "Accept",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-document.1+json",
+            "application/x-bibtex",
+            "application/vnd.mendeley-document-with-files-list+json",
+            "application/vnd.mendeley-msword-bibliography+xml"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Document found"
+            },
+            {
+              "code": 400,
+              "message": "Invalid view requested"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Get a document",
+          "type": "UserDocument"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-document.1+json"
+          ],
+          "method": "PATCH",
+          "nickname": "updateDocument",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "If specified, the document will not be updated if there have been any other changes since this timestamp.  Should be specified in RFC 2822 format.",
+              "name": "If-Unmodified-Since",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "UserDocumentAmendment"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-document.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Document has been updated and the updated version returned"
+            },
+            {
+              "code": 400,
+              "message": "The document is invalid"
+            },
+            {
+              "code": 403,
+              "message": "Tried to modify the group ID"
+            },
+            {
+              "code": 403,
+              "message": "Tried to link to folder when not entitled to that folder"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            },
+            {
+              "code": 404,
+              "message": "Folder not found"
+            },
+            {
+              "code": 412,
+              "message": "Update rejected because there has been another update since the If-Unmodified-Since time"
+            },
+            {
+              "code": 422,
+              "message": "Document amendment is invalid"
+            }
+          ],
+          "summary": "<b>V1</b> - Update a document",
+          "type": "UserDocument"
+        }
+      ],
+      "path": "/documents/{id}"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "POST",
+          "nickname": "moveDocumentToTrash",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Document moved to trash"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Move a document to the trash",
+          "type": "void"
+        }
+      ],
+      "path": "/documents/{id}/trash"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "File": {
+      "id": "File",
+      "properties": {
+        "catalog_id": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "document_id": {
+          "type": "string"
+        },
+        "file_name": {
+          "type": "string"
+        },
+        "filehash": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mime_type": {
+          "type": "string"
+        },
+        "size": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "FilePatch": {
+      "id": "FilePatch",
+      "properties": {
+        "file_name": {
+          "type": "string"
+        }
+      }
+    },
+    "NewUserDocument": {
+      "id": "NewUserDocument",
+      "properties": {
+        "abstract": {
+          "type": "string"
+        },
+        "accessed": {
+          "type": "string"
+        },
+        "authored": {
+          "type": "boolean"
+        },
+        "authors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "chapter": {
+          "type": "string"
+        },
+        "citation_key": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "confirmed": {
+          "type": "boolean"
+        },
+        "country": {
+          "type": "string"
+        },
+        "day": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "department": {
+          "type": "string"
+        },
+        "edition": {
+          "type": "string"
+        },
+        "editors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "folder_uuids": {
+          "items": {
+            "$ref": "UUID"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "genre": {
+          "type": "string"
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "identifiers": {
+          "$ref": "Map[com.mendeley.documents.api.IdentifierType,java.lang.String]"
+        },
+        "institution": {
+          "type": "string"
+        },
+        "issue": {
+          "type": "string"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "language": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "month": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "string"
+        },
+        "patent_application_number": {
+          "type": "string"
+        },
+        "patent_legal_status": {
+          "type": "string"
+        },
+        "patent_owner": {
+          "type": "string"
+        },
+        "private_publication": {
+          "type": "boolean"
+        },
+        "profile_id": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean"
+        },
+        "reprint_edition": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "series": {
+          "type": "string"
+        },
+        "series_editor": {
+          "type": "string"
+        },
+        "series_number": {
+          "type": "string"
+        },
+        "short_title": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_type": {
+          "type": "string"
+        },
+        "starred": {
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "translators": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "type": {
+          "$ref": "com.mendeley.documents.api.DocumentType",
+          "enum": [
+            "journal",
+            "book",
+            "generic",
+            "book_section",
+            "conference_proceedings",
+            "working_paper",
+            "report",
+            "web_page",
+            "thesis",
+            "magazine_article",
+            "statute",
+            "patent",
+            "newspaper_article",
+            "computer_program",
+            "hearing",
+            "television_broadcast",
+            "encyclopedia_article",
+            "case",
+            "film",
+            "bill"
+          ]
+        },
+        "user_context": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "string"
+        },
+        "websites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "year": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title",
+        "type"
+      ]
+    },
+    "Person": {
+      "id": "Person",
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "scopus_author_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "last_name"
+      ]
+    },
+    "UUID": {
+      "id": "UUID",
+      "properties": {
+        "leastSignificantBits": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "mostSignificantBits": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "UserDocument": {
+      "id": "UserDocument",
+      "properties": {
+        "abstract": {
+          "type": "string"
+        },
+        "accessed": {
+          "type": "string"
+        },
+        "authored": {
+          "type": "boolean"
+        },
+        "authors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "chapter": {
+          "type": "string"
+        },
+        "citation_key": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "confirmed": {
+          "type": "boolean"
+        },
+        "country": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "day": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "department": {
+          "type": "string"
+        },
+        "edition": {
+          "type": "string"
+        },
+        "editors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "file_attached": {
+          "type": "boolean"
+        },
+        "folder_uuids": {
+          "items": {
+            "$ref": "UUID"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "genre": {
+          "type": "string"
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifiers": {
+          "$ref": "Map[com.mendeley.documents.api.IdentifierType,java.lang.String]"
+        },
+        "institution": {
+          "type": "string"
+        },
+        "issue": {
+          "type": "string"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "language": {
+          "type": "string"
+        },
+        "last_modified": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "month": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "string"
+        },
+        "patent_application_number": {
+          "type": "string"
+        },
+        "patent_legal_status": {
+          "type": "string"
+        },
+        "patent_owner": {
+          "type": "string"
+        },
+        "private_publication": {
+          "type": "boolean"
+        },
+        "profile_id": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean"
+        },
+        "reprint_edition": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "series": {
+          "type": "string"
+        },
+        "series_editor": {
+          "type": "string"
+        },
+        "series_number": {
+          "type": "string"
+        },
+        "short_title": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_type": {
+          "type": "string"
+        },
+        "starred": {
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "translators": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "type": {
+          "$ref": "com.mendeley.documents.api.DocumentType",
+          "enum": [
+            "journal",
+            "book",
+            "generic",
+            "book_section",
+            "conference_proceedings",
+            "working_paper",
+            "report",
+            "web_page",
+            "thesis",
+            "magazine_article",
+            "statute",
+            "patent",
+            "newspaper_article",
+            "computer_program",
+            "hearing",
+            "television_broadcast",
+            "encyclopedia_article",
+            "case",
+            "film",
+            "bill"
+          ]
+        },
+        "user_context": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "string"
+        },
+        "websites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "year": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title",
+        "type"
+      ]
+    },
+    "UserDocumentAmendment": {
+      "id": "UserDocumentAmendment",
+      "properties": {
+        "abstract": {
+          "type": "string"
+        },
+        "accessed": {
+          "type": "string"
+        },
+        "authored": {
+          "type": "boolean"
+        },
+        "authors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "chapter": {
+          "type": "string"
+        },
+        "citation_key": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "confirmed": {
+          "type": "boolean"
+        },
+        "country": {
+          "type": "string"
+        },
+        "day": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "department": {
+          "type": "string"
+        },
+        "edition": {
+          "type": "string"
+        },
+        "editors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "folder_uuids": {
+          "items": {
+            "$ref": "UUID"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "genre": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "identifiers": {
+          "$ref": "Map[com.mendeley.documents.api.IdentifierType,java.lang.String]"
+        },
+        "institution": {
+          "type": "string"
+        },
+        "issue": {
+          "type": "string"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "language": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "month": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "string"
+        },
+        "patent_application_number": {
+          "type": "string"
+        },
+        "patent_legal_status": {
+          "type": "string"
+        },
+        "patent_owner": {
+          "type": "string"
+        },
+        "private_publication": {
+          "type": "boolean"
+        },
+        "profile_id": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean"
+        },
+        "reprint_edition": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "series": {
+          "type": "string"
+        },
+        "series_editor": {
+          "type": "string"
+        },
+        "series_number": {
+          "type": "string"
+        },
+        "short_title": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_type": {
+          "type": "string"
+        },
+        "starred": {
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "translators": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "type": {
+          "$ref": "com.mendeley.documents.api.DocumentType",
+          "enum": [
+            "journal",
+            "book",
+            "generic",
+            "book_section",
+            "conference_proceedings",
+            "working_paper",
+            "report",
+            "web_page",
+            "thesis",
+            "magazine_article",
+            "statute",
+            "patent",
+            "newspaper_article",
+            "computer_program",
+            "hearing",
+            "television_broadcast",
+            "encyclopedia_article",
+            "case",
+            "film",
+            "bill"
+          ]
+        },
+        "user_context": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "string"
+        },
+        "websites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "year": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/documents",
+  "swaggerVersion": "1.2"
+}

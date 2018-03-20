@@ -1,0 +1,331 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-annotation.1+json"
+          ],
+          "method": "POST",
+          "nickname": "createAnnotation",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Annotation",
+              "name": "body",
+              "paramType": "body",
+              "required": true,
+              "type": "Annotation"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-annotation.1+json"
+          ],
+          "summary": "<b>V1</b> - Create an annotation",
+          "type": "Annotation"
+        },
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "Annotation"
+          },
+          "method": "GET",
+          "nickname": "getAnnotations",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document Id",
+              "name": "document_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Group Id",
+              "name": "group_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Trashed flag",
+              "name": "include_trashed",
+              "paramType": "query",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only annotations modified since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "modified_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only annotations deleted since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "deleted_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 200.",
+              "maximum": "200",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-annotation.1+json"
+          ],
+          "summary": "<b>V1</b> - Get all annotations for a document, profile or group",
+          "type": "array"
+        }
+      ],
+      "path": "/annotations"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "DELETE",
+          "nickname": "deleteAnnotation",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Annotation Id",
+              "name": "annotation_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Success, the annotation is deleted"
+            },
+            {
+              "code": 400,
+              "message": "Bad request"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Annotation not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Delete an annotation",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getAnnotation",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Annotation Id",
+              "name": "annotation_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-annotation.1+json"
+          ],
+          "summary": "<b>V1</b> - Get an annotation",
+          "type": "Annotation"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-annotation.1+json"
+          ],
+          "method": "PATCH",
+          "nickname": "updateAnnotation",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Annotation Id",
+              "name": "annotation_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Annotation patch",
+              "name": "body",
+              "paramType": "body",
+              "required": true,
+              "type": "AnnotationPatch"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-annotation.1+json"
+          ],
+          "summary": "<b>V1</b> - Update an annotation",
+          "type": "Annotation"
+        }
+      ],
+      "path": "/annotations/{annotation_id}"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "Annotation": {
+      "id": "Annotation",
+      "properties": {
+        "color": {
+          "$ref": "Color"
+        },
+        "created": {
+          "type": "string"
+        },
+        "document_id": {
+          "type": "string"
+        },
+        "filehash": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "last_modified": {
+          "type": "string"
+        },
+        "positions": {
+          "items": {
+            "$ref": "BoundingBox"
+          },
+          "type": "array"
+        },
+        "previous_id": {
+          "type": "string"
+        },
+        "privacy_level": {
+          "$ref": "com.mendeley.platform.PrivacyLevel",
+          "enum": [
+            "private",
+            "group",
+            "public"
+          ]
+        },
+        "profile_id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "com.mendeley.platform.model.AnnotationType",
+          "enum": [
+            "sticky_note",
+            "highlight",
+            "note"
+          ]
+        }
+      }
+    },
+    "AnnotationPatch": {
+      "id": "AnnotationPatch",
+      "properties": {
+        "color": {
+          "$ref": "Color"
+        },
+        "filehash": {
+          "type": "string"
+        },
+        "positions": {
+          "items": {
+            "$ref": "BoundingBox"
+          },
+          "type": "array"
+        },
+        "privacy_level": {
+          "$ref": "com.mendeley.platform.PrivacyLevel",
+          "enum": [
+            "private",
+            "group",
+            "public"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "BoundingBox": {
+      "id": "BoundingBox",
+      "properties": {
+        "bottom_right": {
+          "$ref": "Position"
+        },
+        "page": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "top_left": {
+          "$ref": "Position"
+        }
+      }
+    },
+    "Color": {
+      "id": "Color",
+      "properties": {
+        "b": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "g": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "r": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Position": {
+      "id": "Position",
+      "properties": {
+        "x": {
+          "format": "double",
+          "type": "number"
+        },
+        "y": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/annotations",
+  "swaggerVersion": "1.2"
+}

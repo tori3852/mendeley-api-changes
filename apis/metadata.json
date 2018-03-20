@@ -1,0 +1,115 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getDocumentIdByMetadata",
+          "notes": "You should specify a filehash OR at least 1 identifier OR a title for a successful match.Looking up ONLY by authors OR year OR source would not return a result.If matching on 'title' then providing authors OR year OR source would improve the lookup.",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "arxiv",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "doi",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "pmid",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "isbn",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "title",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "filehash",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "authors",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "year",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "source",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-document-lookup.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Get document by id metadata"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Get document metadata",
+          "type": "DocumentLookupResponse"
+        }
+      ],
+      "path": "/metadata"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "DocumentLookupResponse": {
+      "id": "DocumentLookupResponse",
+      "properties": {
+        "catalog_id": {
+          "type": "string"
+        },
+        "score": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/metadata",
+  "swaggerVersion": "1.2"
+}

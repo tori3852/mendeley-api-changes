@@ -1,0 +1,2249 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getLatestPublicDatasets",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Filter by datasets linked to an article doi",
+              "name": "article_doi",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Filter by journal ISSN",
+              "name": "issn",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Filter by Mendeley Institution UID",
+              "name": "institution",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Filter by date of last dataset change",
+              "name": "modified_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": true,
+              "description": "Filter search results by file type",
+              "enum": [
+                "document",
+                "file_set",
+                "image",
+                "raw",
+                "slides",
+                "software",
+                "statistical_data",
+                "tabular_data",
+                "video"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "name": "type",
+              "paramType": "query",
+              "required": false,
+              "type": "array"
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "results.id",
+              "description": "Comma-separated list of fields to retrieve for each dataset. Note: 'results.*' to return everything.",
+              "name": "fields",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The sort order",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The field to sort on",
+              "enum": [
+                "publish_date",
+                "name"
+              ],
+              "name": "sort",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-public-dataset.1+json"
+          ],
+          "summary": "<b>V1</b> - Retrieve the latest versions of all public datasets",
+          "type": "PublicDatasetsWithSummary"
+        }
+      ],
+      "path": "/datasets"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-dataset-creation-request.1+json"
+          ],
+          "method": "POST",
+          "nickname": "createDataSet",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "DatasetCreationRequest"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-draft-dataset.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Data set created. The URL of the new draft can be found in the Location header."
+            }
+          ],
+          "summary": "<b>V1</b> - Create a new dataset",
+          "type": "DraftDataset"
+        },
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "DraftDataset"
+          },
+          "method": "GET",
+          "nickname": "getDrafts",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "id",
+              "description": "Comma-separated fields to retrieve for each dataset in the results",
+              "name": "fields",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The sort order",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-draft-dataset.1+json"
+          ],
+          "summary": "<b>V1</b> - Get the current user's drafts",
+          "type": "array"
+        }
+      ],
+      "path": "/datasets/drafts"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "DELETE",
+          "nickname": "deleteDraft",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "The dataset was reverted."
+            },
+            {
+              "code": 403,
+              "message": "You do not have permission to revert the dataset."
+            }
+          ],
+          "summary": "<b>V1</b> - Delete (if unpublished) or roll back (if published) changes in a draft dataset",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getDraft",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "view_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "submission_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "*",
+              "description": "BETA: Comma-separated list of fields to retrieve. Note: '*' to return everything.",
+              "name": "fields",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-draft-dataset.1+json"
+          ],
+          "summary": "<b>V1</b> - Retrieve a draft dataset",
+          "type": "DraftDataset"
+        },
+        {
+          "authorizations": {},
+          "method": "POST",
+          "nickname": "publishDraft",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "The dataset was published."
+            },
+            {
+              "code": 403,
+              "message": "Attempting to publish a dataset you do not have permission to access."
+            },
+            {
+              "code": 409,
+              "message": "Attempting to republish a dataset identical to the current publish version."
+            }
+          ],
+          "summary": "<b>V1</b> - Publish a dataset",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-dataset-patch.1+json"
+          ],
+          "method": "PATCH",
+          "nickname": "updateDraft",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "DraftDatasetPatch"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-draft-dataset.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "The draft was successfully updated. The updated draft is returned.",
+              "responseModel": "DraftDataset"
+            },
+            {
+              "code": 403,
+              "message": "Attempting to update a data set you do not have permission to access.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 409,
+              "message": "The update would result in the dataset being in an invalid state.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 422,
+              "message": "The patch was not in the correct format, or contained invalid data.",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1</b> - Update a draft dataset",
+          "type": "DraftDataset"
+        }
+      ],
+      "path": "/datasets/drafts/{id}"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "LicenceInfo"
+          },
+          "method": "GET",
+          "nickname": "getLicenceInfo",
+          "notes": "",
+          "parameters": [],
+          "produces": [
+            "application/vnd.mendeley-licence-info.1+json"
+          ],
+          "summary": "<b>V1</b> - Retrieve a list of licences that can be applied to datasets",
+          "type": "array"
+        }
+      ],
+      "path": "/datasets/licences"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-rdm-submission-creation-request.1+json"
+          ],
+          "method": "POST",
+          "nickname": "createSubmission",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "SubmissionCreationRequest"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-rdm-submission.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Submission created"
+            },
+            {
+              "code": 403,
+              "message": "Client not authorized as external submission system but no submission token provided."
+            },
+            {
+              "code": 422,
+              "message": "Submission not valid.",
+              "responseModel": "FieldErrors"
+            }
+          ],
+          "summary": "<b>V1</b> - Create a new submission",
+          "type": "SubmissionView"
+        },
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "BasicSubmissionView"
+          },
+          "method": "GET",
+          "nickname": "getSubmissions",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Secondary Submission id",
+              "name": "secondary_submission_id",
+              "paramType": "query",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-rdm-basic-submission-view.1+json"
+          ],
+          "summary": "<b>V1</b> - Retrieve some basic submission data by secondary_submission_id",
+          "type": "array"
+        }
+      ],
+      "path": "/datasets/submissions/{submission_system}"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getSubmission",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission Token",
+              "name": "submission_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-rdm-submission.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 403,
+              "message": "Client not authorized as external submission system but no submission token provided."
+            },
+            {
+              "code": 404,
+              "message": "Client provided wrong submission token."
+            },
+            {
+              "code": 404,
+              "message": "Submission does not exist."
+            }
+          ],
+          "summary": "<b>V1</b> - Retrieve a submission",
+          "type": "SubmissionView"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-rdm-submission-modification-request.1+json"
+          ],
+          "method": "PATCH",
+          "nickname": "modifySubmissionData",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission Token",
+              "name": "submission_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "SubmissionModificationRequest"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-rdm-submission.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 403,
+              "message": "Client not authorized as external submission system but no submission token provided."
+            },
+            {
+              "code": 404,
+              "message": "Submission not found."
+            },
+            {
+              "code": 422,
+              "message": "Updated dataset must be valid.",
+              "responseModel": "FieldErrors"
+            }
+          ],
+          "summary": "<b>V1</b> - Update a submission",
+          "type": "SubmissionView"
+        }
+      ],
+      "path": "/datasets/submissions/{submission_system}/{id}"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-dataset-creation-request.1+json"
+          ],
+          "method": "POST",
+          "nickname": "createDraft",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission Token",
+              "name": "submission_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "DatasetCreationRequest"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-draft-dataset.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 403,
+              "message": "Invalid submission token.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 422,
+              "message": "The created dataset must be valid.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 422,
+              "message": "The specified article is unknown.",
+              "responseModel": "FieldErrors"
+            }
+          ],
+          "summary": "<b>V1</b> - Add dataset to submission",
+          "type": "DraftDataset"
+        },
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "DraftDataset"
+          },
+          "method": "GET",
+          "nickname": "getDraftsForSubmission",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "id",
+              "description": "Comma-separated fields to retrieve for each dataset in the results",
+              "name": "fields",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission Token",
+              "name": "submission_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The sort order",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-draft-dataset.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 403,
+              "message": "Client not authorized as external submission system but no submission token provided."
+            },
+            {
+              "code": 403,
+              "message": "Invalid submission token.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 404,
+              "message": "Submission not found.",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1</b> - Get datasets for a submission",
+          "type": "array"
+        }
+      ],
+      "path": "/datasets/submissions/{submission_system}/{id}/datasets"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "DELETE",
+          "nickname": "unlinkDataset",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "dataset_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission Token",
+              "name": "submission_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Dataset unlinked"
+            },
+            {
+              "code": 403,
+              "message": "Client not authorized as external submission system but no submission token provided."
+            },
+            {
+              "code": 403,
+              "message": "Invalid submission token.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 404,
+              "message": "Submission not found.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 404,
+              "message": "Dataset not found.",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1</b> - Unlink a dataset",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-dataset-patch.1+json"
+          ],
+          "method": "PATCH",
+          "nickname": "updateDraftDatasets",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "dataset_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission Token",
+              "name": "submission_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "DraftDatasetPatch"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-draft-dataset.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Dataset updated"
+            },
+            {
+              "code": 403,
+              "message": "Invalid submission token.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 404,
+              "message": "Dataset not found.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 422,
+              "message": "Updated dataset must be valid.",
+              "responseModel": "FieldErrors"
+            }
+          ],
+          "summary": "<b>V1</b> - Update a submission draft dataset",
+          "type": "DraftDataset"
+        }
+      ],
+      "path": "/datasets/submissions/{submission_system}/{id}/datasets/{dataset_id}"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-dataset-folder-structure+json"
+          ],
+          "method": "POST",
+          "nickname": "addFolderStructure",
+          "notes": "Use the 'parent_id' when adding a folder structure to an existing folder<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Parent folder",
+              "name": "parent_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Folders to be added",
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "FolderStructureRequest"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-dataset-folder-structure+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Folders created."
+            },
+            {
+              "code": 404,
+              "message": "Dataset or parent not found."
+            },
+            {
+              "code": 409,
+              "message": "Folder already exists"
+            },
+            {
+              "code": 403,
+              "message": "User not Authorised to create a folder"
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Add folder structure",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-dataset-folder+json"
+          ],
+          "method": "POST",
+          "nickname": "createFolder",
+          "notes": "Only 'name', 'description' and parent are used.<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "New folder",
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "FolderCreationRequest"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-dataset-folder+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Folder created."
+            },
+            {
+              "code": 404,
+              "message": "Dataset or parent not found."
+            },
+            {
+              "code": 409,
+              "message": "Folder already exists"
+            },
+            {
+              "code": 403,
+              "message": "User not Authorised to create a folder"
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Create a folder",
+          "type": "Folder"
+        },
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "Folder"
+          },
+          "method": "GET",
+          "nickname": "getFolders",
+          "notes": "Filtering by folder parent:\n  * if not specified - return all folders from all levels\n  * parent ID specified - return all folders that have this as a parent\n  * special value for parent ID to ask to return root folders - \"null\"\n\nResults will be limited if a limit is provided but you won't be able to get next page<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "view_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Parent folder",
+              "name": "parent_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-dataset-folder+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Here are the folders."
+            },
+            {
+              "code": 404,
+              "message": "Dataset not found."
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Get draft dataset's folders",
+          "type": "array"
+        }
+      ],
+      "path": "/datasets/v1/drafts/{id}/folders"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "DELETE",
+          "nickname": "deleteFolder",
+          "notes": "Attempting to delete a non-empty folder will return a 409: Conflict<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Folder id",
+              "name": "folder_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Deleted."
+            },
+            {
+              "code": 404,
+              "message": "Dataset or folder not found."
+            },
+            {
+              "code": 409,
+              "message": "Folder not empty."
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Delete a folder",
+          "type": "void"
+        },
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getFolder",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "view_token",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Folder id",
+              "name": "folder_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-dataset-folder+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Here's the folder."
+            },
+            {
+              "code": 404,
+              "message": "Dataset or folder not found."
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Get draft dataset's folder",
+          "type": "Folder"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-dataset-folder+json"
+          ],
+          "method": "PATCH",
+          "nickname": "updateFolder",
+          "notes": "Update folder metadata (only 'name', 'description' and parent are used), or move it to a new parent.<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Folder id",
+              "name": "folder_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Values to update",
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "FolderPatchRequest"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-dataset-folder+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Folder updated."
+            },
+            {
+              "code": 400,
+              "message": "Folder update results in a cycle."
+            },
+            {
+              "code": 404,
+              "message": "Dataset, folder or parent not found."
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Update a folder",
+          "type": "Folder"
+        }
+      ],
+      "path": "/datasets/v1/drafts/{id}/folders/{folder_id}"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "Folder"
+          },
+          "method": "GET",
+          "nickname": "getFolders",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Dataset version",
+              "format": "int64",
+              "name": "version",
+              "paramType": "query",
+              "required": true,
+              "type": "integer"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Parent folder",
+              "name": "parent_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-dataset-folder+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Here are the folders."
+            },
+            {
+              "code": 451,
+              "message": "Dataset under embargo."
+            },
+            {
+              "code": 404,
+              "message": "Dataset not found."
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Get published dataset's folders",
+          "type": "array"
+        }
+      ],
+      "path": "/datasets/v1/{id}/folders"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getFolder",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Dataset version (defaults to the latest published)",
+              "format": "int64",
+              "name": "version",
+              "paramType": "query",
+              "required": false,
+              "type": "integer"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Folder id",
+              "name": "folder_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-dataset-folder+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Here's the folder."
+            },
+            {
+              "code": 451,
+              "message": "Dataset under embargo."
+            },
+            {
+              "code": 404,
+              "message": "Dataset or folder not found."
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Get published dataset's folder",
+          "type": "Folder"
+        }
+      ],
+      "path": "/datasets/v1/{id}/folders/{folder_id}"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getPublicDataset",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "The id of the dataset to retrieve",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The version of the dataset to retrieve (defaults to the latest published)",
+              "format": "int64",
+              "name": "version",
+              "paramType": "query",
+              "required": false,
+              "type": "integer"
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "*",
+              "description": "BETA: Comma-separated list of fields to retrieve for the dataset. Note: '*' to return everything.",
+              "name": "fields",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-public-dataset.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "message": "No public dataset with the supplied id was found."
+            }
+          ],
+          "summary": "<b>V1</b> - Retrieve a public dataset using its id",
+          "type": "PublicDataset"
+        }
+      ],
+      "path": "/datasets/{id}"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "AlternativeName": {
+      "id": "AlternativeName",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "BasicSubmissionView": {
+      "id": "BasicSubmissionView",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "secondary_submission_id": {
+          "type": "string"
+        }
+      }
+    },
+    "Category": {
+      "id": "Category",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "Contributor": {
+      "id": "Contributor",
+      "properties": {
+        "contribution": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "institution": {
+          "$ref": "Institution"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "profile_id": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "com.mendeley.platform.datasets.api.dataset.DatasetRole",
+          "enum": [
+            "owner",
+            "contributor",
+            "proxy"
+          ]
+        }
+      }
+    },
+    "ContributorCreationRequest": {
+      "id": "ContributorCreationRequest",
+      "properties": {
+        "contribution": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "institution": {
+          "$ref": "Institution"
+        },
+        "last_name": {
+          "type": "string"
+        }
+      }
+    },
+    "DataSetIdentity": {
+      "id": "DataSetIdentity",
+      "properties": {
+        "data_set_id": {
+          "type": "string"
+        },
+        "version": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "DatasetCreationRequest": {
+      "id": "DatasetCreationRequest",
+      "properties": {
+        "articles": {
+          "items": {
+            "$ref": "LinkArticleRequest"
+          },
+          "type": "array"
+        },
+        "categories": {
+          "items": {
+            "$ref": "LinkCategoryRequest"
+          },
+          "type": "array"
+        },
+        "contributors": {
+          "items": {
+            "$ref": "ContributorCreationRequest"
+          },
+          "type": "array"
+        },
+        "data_licence": {
+          "$ref": "LinkLicenceRequest"
+        },
+        "description": {
+          "type": "string"
+        },
+        "files": {
+          "items": {
+            "$ref": "FileMetadataCreationRequest"
+          },
+          "type": "array"
+        },
+        "institutions": {
+          "items": {
+            "$ref": "LinkInstitutionRequest"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "DatasetMetrics": {
+      "id": "DatasetMetrics",
+      "properties": {
+        "file_downloads": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "file_previews": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "views": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "DatasetShortIdentity": {
+      "id": "DatasetShortIdentity",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "Doi": {
+      "id": "Doi",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "reserved",
+            "requested",
+            "allocated"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "DraftDataset": {
+      "id": "DraftDataset",
+      "properties": {
+        "articles": {
+          "items": {
+            "$ref": "EmbeddedArticleView"
+          },
+          "type": "array"
+        },
+        "categories": {
+          "items": {
+            "$ref": "Category"
+          },
+          "type": "array"
+        },
+        "contributors": {
+          "items": {
+            "$ref": "Contributor"
+          },
+          "type": "array"
+        },
+        "created_date": {
+          "type": "string"
+        },
+        "data_licence": {
+          "$ref": "LicenceInfo"
+        },
+        "description": {
+          "type": "string"
+        },
+        "doi": {
+          "$ref": "Doi"
+        },
+        "embargo_date": {
+          "type": "string"
+        },
+        "files": {
+          "items": {
+            "$ref": "FileMetadata"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identity": {
+          "$ref": "DataSetIdentity"
+        },
+        "institutions": {
+          "items": {
+            "$ref": "Institution"
+          },
+          "type": "array"
+        },
+        "last_modification_date": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "OwnerDetails"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "related_links": {
+          "items": {
+            "$ref": "RelatedLink"
+          },
+          "type": "array"
+        },
+        "version": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "versions": {
+          "items": {
+            "$ref": "VersionMetadata"
+          },
+          "type": "array"
+        },
+        "view_token": {
+          "type": "string"
+        }
+      }
+    },
+    "DraftDatasetPatch": {
+      "id": "DraftDatasetPatch",
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "LinkCategoryRequest"
+          },
+          "type": "array"
+        },
+        "contributors": {
+          "items": {
+            "$ref": "ContributorCreationRequest"
+          },
+          "type": "array"
+        },
+        "data_licence": {
+          "$ref": "LinkLicenceRequest"
+        },
+        "description": {
+          "type": "string"
+        },
+        "embargo_date": {
+          "type": "string"
+        },
+        "files": {
+          "items": {
+            "$ref": "FileMetadataCreationRequest"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "EmbeddedArticleView": {
+      "id": "EmbeddedArticleView",
+      "properties": {
+        "doi": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "journal": {
+          "$ref": "EmbeddedJournalView"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "EmbeddedJournalView": {
+      "id": "EmbeddedJournalView",
+      "properties": {
+        "issn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "id": "Error",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "FieldError": {
+      "id": "FieldError",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "FieldErrors": {
+      "id": "FieldErrors",
+      "properties": {
+        "field_errors": {
+          "items": {
+            "$ref": "FieldError"
+          },
+          "type": "array"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "FileData": {
+      "id": "FileData",
+      "properties": {
+        "content_type": {
+          "type": "string"
+        },
+        "created_date": {
+          "type": "string"
+        },
+        "download_expiry_time": {
+          "type": "string"
+        },
+        "download_url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "sha1_hash": {
+          "type": "string"
+        },
+        "sha256_hash": {
+          "type": "string"
+        },
+        "size": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "view_url": {
+          "type": "string"
+        }
+      }
+    },
+    "FileMetadata": {
+      "id": "FileMetadata",
+      "properties": {
+        "content_details": {
+          "$ref": "FileData"
+        },
+        "description": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "folder_id": {
+          "description": "<b>BETA</b>",
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "metrics": {
+          "$ref": "FileMetrics"
+        }
+      }
+    },
+    "FileMetadataCreationRequest": {
+      "id": "FileMetadataCreationRequest",
+      "properties": {
+        "content_details": {
+          "$ref": "LinkContentRequest"
+        },
+        "description": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "folder_id": {
+          "type": "string"
+        }
+      }
+    },
+    "FileMetrics": {
+      "id": "FileMetrics",
+      "properties": {
+        "downloads": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "fileId": {
+          "type": "string"
+        },
+        "previews": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "Filters": {
+      "id": "Filters",
+      "properties": {
+        "type": {
+          "$ref": "Object"
+        }
+      }
+    },
+    "Folder": {
+      "id": "Folder",
+      "properties": {
+        "created_date": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        }
+      }
+    },
+    "FolderCreationRequest": {
+      "id": "FolderCreationRequest",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        }
+      }
+    },
+    "FolderPatchRequest": {
+      "id": "FolderPatchRequest",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        }
+      }
+    },
+    "FolderStructureRequest": {
+      "id": "FolderStructureRequest",
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Institution": {
+      "id": "Institution",
+      "properties": {
+        "alt_names": {
+          "items": {
+            "$ref": "AlternativeName"
+          },
+          "type": "array"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "profile_url": {
+          "type": "string"
+        },
+        "scival_id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "state": {
+          "type": "string"
+        },
+        "urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "LicenceInfo": {
+      "id": "LicenceInfo",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "short_name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "LinkArticleRequest": {
+      "id": "LinkArticleRequest",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "linking_code": {
+          "type": "string"
+        }
+      }
+    },
+    "LinkCategoryRequest": {
+      "id": "LinkCategoryRequest",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "LinkContentRequest": {
+      "id": "LinkContentRequest",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "LinkInstitutionRequest": {
+      "id": "LinkInstitutionRequest",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "LinkLicenceRequest": {
+      "id": "LinkLicenceRequest",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "OwnerDetails": {
+      "id": "OwnerDetails",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "profile_id": {
+          "type": "string"
+        }
+      }
+    },
+    "PublicContributorDetails": {
+      "id": "PublicContributorDetails",
+      "properties": {
+        "contribution": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "institution": {
+          "$ref": "Institution"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "profile_id": {
+          "type": "string"
+        }
+      }
+    },
+    "PublicDataset": {
+      "id": "PublicDataset",
+      "properties": {
+        "articles": {
+          "items": {
+            "$ref": "EmbeddedArticleView"
+          },
+          "type": "array"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "categories": {
+          "items": {
+            "$ref": "Category"
+          },
+          "type": "array"
+        },
+        "contributors": {
+          "items": {
+            "$ref": "PublicContributorDetails"
+          },
+          "type": "array"
+        },
+        "data_licence": {
+          "$ref": "LicenceInfo"
+        },
+        "description": {
+          "type": "string"
+        },
+        "doi": {
+          "$ref": "Doi"
+        },
+        "embargo_date": {
+          "type": "string"
+        },
+        "files": {
+          "items": {
+            "$ref": "FileMetadata"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "institutions": {
+          "items": {
+            "$ref": "Institution"
+          },
+          "type": "array"
+        },
+        "method": {
+          "type": "string"
+        },
+        "metrics": {
+          "$ref": "DatasetMetrics"
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner_id": {
+          "type": "string"
+        },
+        "publish_date": {
+          "type": "string"
+        },
+        "related_links": {
+          "items": {
+            "$ref": "RelatedLink"
+          },
+          "type": "array"
+        },
+        "version": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "versions": {
+          "items": {
+            "$ref": "VersionMetadata"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "PublicDatasetsWithSummary": {
+      "id": "PublicDatasetsWithSummary",
+      "properties": {
+        "filters": {
+          "$ref": "Filters"
+        },
+        "results": {
+          "items": {
+            "$ref": "PublicDataset"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "RelatedLink": {
+      "id": "RelatedLink",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "rel": {
+          "enum": [
+            "cites",
+            "cited_by",
+            "compiles",
+            "compiled_by",
+            "source_of",
+            "derived_from",
+            "related_to"
+          ],
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "other",
+            "software",
+            "article",
+            "dataset"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "SubmissionCreationRequest": {
+      "id": "SubmissionCreationRequest",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "SubmissionOwner"
+        },
+        "submission_data": {
+          "$ref": "Object"
+        }
+      }
+    },
+    "SubmissionModificationRequest": {
+      "id": "SubmissionModificationRequest",
+      "properties": {
+        "secondary_submission_id": {
+          "type": "string"
+        },
+        "submission_data": {
+          "$ref": "Object"
+        }
+      }
+    },
+    "SubmissionOwner": {
+      "id": "SubmissionOwner",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "SubmissionView": {
+      "id": "SubmissionView",
+      "properties": {
+        "datasets": {
+          "items": {
+            "$ref": "DatasetShortIdentity"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "SubmissionOwner"
+        },
+        "secondary_submission_id": {
+          "type": "string"
+        },
+        "submission_data": {
+          "$ref": "Object"
+        },
+        "submission_token": {
+          "type": "string"
+        }
+      }
+    },
+    "VersionMetadata": {
+      "id": "VersionMetadata",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "embargo_date": {
+          "type": "string"
+        },
+        "publish_date": {
+          "type": "string"
+        },
+        "version": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/datasets",
+  "swaggerVersion": "1.2"
+}

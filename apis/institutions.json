@@ -1,0 +1,187 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "Institution"
+          },
+          "method": "GET",
+          "nickname": "getInstitutions",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Part of institution name",
+              "name": "hint",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Email address",
+              "name": "email",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "10",
+              "description": "Max results to return (up to 100)",
+              "format": "int32",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "integer"
+            },
+            {
+              "allowMultiple": false,
+              "name": "name",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "city",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "state",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "country",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-institution.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Found institutions"
+            },
+            {
+              "code": 400,
+              "message": "Hint missing"
+            }
+          ],
+          "summary": "<b>V1</b> - Get institutions matching given hint",
+          "type": "array"
+        }
+      ],
+      "path": "/institutions"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getInstitution",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Institution ID",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-institution.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Found institution"
+            },
+            {
+              "code": 400,
+              "message": "Invalid request"
+            },
+            {
+              "code": 404,
+              "message": "Institution not found"
+            }
+          ],
+          "summary": "<b>V1</b> - Get institution matching given institution uuid",
+          "type": "Institution"
+        }
+      ],
+      "path": "/institutions/{id}"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "AlternativeName": {
+      "id": "AlternativeName",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Institution": {
+      "id": "Institution",
+      "properties": {
+        "alt_names": {
+          "items": {
+            "$ref": "AlternativeName"
+          },
+          "type": "array"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "profile_url": {
+          "type": "string"
+        },
+        "scival_id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "state": {
+          "type": "string"
+        },
+        "urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/institutions",
+  "swaggerVersion": "1.2"
+}

@@ -1,0 +1,115 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "consumes": [
+            "*/*"
+          ],
+          "method": "POST",
+          "nickname": "uploadContent",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "Content-Type",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "File to upload",
+              "name": "File",
+              "paramType": "body",
+              "required": true,
+              "type": "file"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-content-ticket.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Content uploaded."
+            },
+            {
+              "code": 408,
+              "message": "Client timeout"
+            },
+            {
+              "code": 499,
+              "message": "Client data stream prematurely terminated"
+            }
+          ],
+          "summary": "<b>V1</b> - Upload file content; an id is returned that can be used with some other services.",
+          "type": "Ticket"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/vnd.mendeley-file-hash.1+json"
+          ],
+          "method": "POST",
+          "nickname": "uploadFileHash",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "SHA-256 of the file content and a SHA_256 signature made from profile UUID and file content",
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "HashWithSignature"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-content-ticket.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "File hash uploaded."
+            },
+            {
+              "code": 412,
+              "message": "Invalid file hash or signature."
+            }
+          ],
+          "summary": "<b>V1</b> - Upload file hash; an id is returned that can be used with some other services.",
+          "type": "Ticket"
+        }
+      ],
+      "path": "/file_contents"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "HashWithSignature": {
+      "id": "HashWithSignature",
+      "properties": {
+        "file_hash": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        }
+      }
+    },
+    "Ticket": {
+      "id": "Ticket",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/file_contents",
+  "swaggerVersion": "1.2"
+}

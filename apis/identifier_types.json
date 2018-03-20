@@ -1,0 +1,43 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "IdentifierTypeDefinition"
+          },
+          "method": "GET",
+          "nickname": "getAllDocumentTypes",
+          "notes": "",
+          "parameters": [],
+          "produces": [
+            "application/vnd.mendeley-document-identifier.1+json"
+          ],
+          "summary": "<b>V1</b> - Get available document identifier types",
+          "type": "array"
+        }
+      ],
+      "path": "/identifier_types"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "IdentifierTypeDefinition": {
+      "id": "IdentifierTypeDefinition",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/identifier_types",
+  "swaggerVersion": "1.2"
+}

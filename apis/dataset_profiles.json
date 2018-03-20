@@ -1,0 +1,285 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "consumes": [
+            "application/vnd.mendeley-submission-profile+json"
+          ],
+          "method": "POST",
+          "nickname": "create",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "Profile"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Profile created."
+            },
+            {
+              "code": 400,
+              "message": "Invalid request.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 409,
+              "message": "Profile already exists for specified submission id.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 401,
+              "message": "Access not authorized",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1</b> - Create a new profile",
+          "type": "void"
+        }
+      ],
+      "path": "/dataset_profiles/v1"
+    },
+    {
+      "operations": [
+        {
+          "consumes": [
+            "application/vnd.mendeley-submission-profile+json"
+          ],
+          "method": "PUT",
+          "nickname": "add",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "Profile"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Profile modified successfully."
+            },
+            {
+              "code": 404,
+              "message": "Profile not found."
+            },
+            {
+              "code": 400,
+              "message": "Invalid request.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 401,
+              "message": "Access not authorized",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1</b> - Modify an existing profile",
+          "type": "void"
+        },
+        {
+          "method": "DELETE",
+          "nickname": "deleteById",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Profile deleted."
+            },
+            {
+              "code": 404,
+              "message": "Profile not found.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 401,
+              "message": "Access not authorized",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1</b> - Delete profile by submission id",
+          "type": "void"
+        },
+        {
+          "method": "GET",
+          "nickname": "getAssetById",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-submission-profile+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Profile retrieved."
+            },
+            {
+              "code": 404,
+              "message": "Profile not found.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 401,
+              "message": "Access not authorized",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1</b> - Retrieve a profile by submission id",
+          "type": "Profile"
+        }
+      ],
+      "path": "/dataset_profiles/v1/{id}"
+    },
+    {
+      "operations": [
+        {
+          "method": "DELETE",
+          "nickname": "deleteLinksOnly",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "link_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Link deleted."
+            },
+            {
+              "code": 404,
+              "message": "Profile or link not found.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 401,
+              "message": "Access not authorized",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1</b> - Delete the link identified by the link id.",
+          "type": "void"
+        }
+      ],
+      "path": "/dataset_profiles/v1/{id}/links/{link_id}"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "Error": {
+      "id": "Error",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Link": {
+      "id": "Link",
+      "properties": {
+        "doi": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "item_description": {
+          "type": "string"
+        },
+        "item_title": {
+          "type": "string"
+        },
+        "item_url": {
+          "type": "string"
+        },
+        "other_identifier": {
+          "type": "string"
+        },
+        "repository_name": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "Profile": {
+      "id": "Profile",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "links": {
+          "items": {
+            "$ref": "Link"
+          },
+          "type": "array"
+        },
+        "submission_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/dataset_profiles",
+  "swaggerVersion": "1.2"
+}
