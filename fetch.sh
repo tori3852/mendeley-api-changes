@@ -26,7 +26,7 @@ done
 echo "Recording changes"
 
 git -C mendeley-api-changes/ add apis/
-git -C mendeley-api-changes/ commit -m "API changes for: $(date)"
+git -C mendeley-api-changes/ -c user.name=heroku -c user.email=heroku commit -m "API changes for: $(date)"
 
 echo "Pushing changes"
 git -C mendeley-api-changes/ push
