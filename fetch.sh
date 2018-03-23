@@ -24,7 +24,10 @@ for endpoint in $endpoints;
     echo "Endpoint: $endpoint"
     endpoint="$(echo $endpoint | sed 's|^/||')"
     file="$(echo $endpoint | sed 's|/|_|g').json"
-    curl -s "https://api.mendeley.com/apidocs/apis/$endpoint" | $main_dir/bin/jq -S '.' > "mendeley-api-changes/apis/$file"
+    # Sort by: '.apis[].path' + '.apis[].operations.nickname'
+    curl -s "https://api.mendeley.com/apidocs/apis/$endpoint" \
+    | $main_dir/bin/jq -S '.apis |= sort_by(.path) | .apis[].operations |= sort_by(.nickname)' \
+    > "mendeley-api-changes/apis/$file"
 done
 
 echo "Recording changes"
@@ -36,4 +39,3 @@ echo "Pushing changes"
 git -C mendeley-api-changes/ push
 
 echo "Done."
-
