@@ -2,8 +2,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+main_dir="$(dirname "$(realpath "$0")")"
+
 echo "Adding key"
-export KEY_FILE="$(dirname "$(realpath "$0")")/.private"
+export KEY_FILE="$main_dir/.private"
 echo "$PRIVATE_KEY" > $KEY_FILE
 export GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i $KEY_FILE"
 ls -la $KEY_FILE
@@ -15,14 +17,14 @@ git clone git@github.com:tori3852/mendeley-api-changes.git
 mkdir mendeley-api-changes/apis/
 
 echo "Fetching API"
-endpoints=$(curl -s "https://api.mendeley.com/apidocs/apis" | python -c 'import sys, json; print "\n".join(list(map(lambda ep: ep["path"], json.load(sys.stdin)["apis"])));' | sort)
+endpoints=$(curl -s "https://api.mendeley.com/apidocs/apis" | $main_dir/bin/jq -rS '.apis[].path')
 
 for endpoint in $endpoints;
   do
     echo "Endpoint: $endpoint"
     endpoint="$(echo $endpoint | sed 's|^/||')"
     file="$(echo $endpoint | sed 's|/|_|g').json"
-    curl -s "https://api.mendeley.com/apidocs/apis/$endpoint" | python -m json.tool > "mendeley-api-changes/apis/$file"
+    curl -s "https://api.mendeley.com/apidocs/apis/$endpoint" | $main_dir/bin/jq -S '.' > "mendeley-api-changes/apis/$file"
 done
 
 echo "Recording changes"
