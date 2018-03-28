@@ -1588,6 +1588,9 @@
         "doi": {
           "$ref": "Doi"
         },
+        "doi_prefix": {
+          "type": "string"
+        },
         "embargo_date": {
           "type": "string"
         },
