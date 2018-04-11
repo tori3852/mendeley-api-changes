@@ -182,7 +182,8 @@
             "application/vnd.mendeley-document.1+json",
             "application/x-bibtex",
             "application/vnd.mendeley-document-with-files-list+json",
-            "application/vnd.mendeley-msword-bibliography+xml"
+            "application/vnd.mendeley-msword-bibliography+xml",
+            "application/vnd.mendeley-document-summary+json"
           ],
           "responseMessages": [
             {
@@ -589,7 +590,8 @@
             "application/vnd.mendeley-document.1+json",
             "application/x-bibtex",
             "application/vnd.mendeley-document-with-files-list+json",
-            "application/vnd.mendeley-msword-bibliography+xml"
+            "application/vnd.mendeley-msword-bibliography+xml",
+            "application/vnd.mendeley-document-summary+json"
           ],
           "responseMessages": [
             {
