@@ -256,6 +256,9 @@
           "format": "int32",
           "type": "integer"
         },
+        "has_pdf": {
+          "type": "boolean"
+        },
         "id": {
           "type": "string"
         },
