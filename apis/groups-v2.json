@@ -70,6 +70,14 @@
             },
             {
               "allowMultiple": false,
+              "defaultValue": "all",
+              "name": "type",
+              "paramType": "query",
+              "required": false,
+              "type": "com.mendeley.groups.resources.v2.GroupType"
+            },
+            {
+              "allowMultiple": false,
               "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
               "maximum": "500",
               "minimum": "1",
@@ -86,6 +94,14 @@
             {
               "code": 200,
               "message": "Groups returned"
+            },
+            {
+              "code": 403,
+              "message": "User is not allowed to perform this operation"
+            },
+            {
+              "code": 404,
+              "message": "Invalid usage of 'type' parameter"
             }
           ],
           "summary": "<b>V2</b> - Fetches user's groups",
