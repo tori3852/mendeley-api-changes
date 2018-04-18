@@ -1545,6 +1545,9 @@
         "id": {
           "type": "string"
         },
+        "prefix": {
+          "type": "string"
+        },
         "status": {
           "enum": [
             "reserved",
@@ -1579,6 +1582,9 @@
         "created_date": {
           "type": "string"
         },
+        "customer_id": {
+          "type": "string"
+        },
         "data_licence": {
           "$ref": "LicenceInfo"
         },
@@ -1587,9 +1593,6 @@
         },
         "doi": {
           "$ref": "Doi"
-        },
-        "doi_prefix": {
-          "type": "string"
         },
         "embargo_date": {
           "type": "string"
