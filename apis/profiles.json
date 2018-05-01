@@ -590,6 +590,9 @@
         "institution_id": {
           "type": "string"
         },
+        "last_modified": {
+          "type": "string"
+        },
         "last_name": {
           "type": "string"
         },
