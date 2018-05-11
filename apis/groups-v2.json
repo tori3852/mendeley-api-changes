@@ -1233,6 +1233,10 @@
         "url_slug": {
           "type": "string"
         },
+        "used_space": {
+          "format": "int64",
+          "type": "integer"
+        },
         "webpage": {
           "type": "string"
         }
