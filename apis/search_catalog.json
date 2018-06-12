@@ -205,6 +205,9 @@
           "format": "int32",
           "type": "integer"
         },
+        "open_access": {
+          "type": "boolean"
+        },
         "pages": {
           "type": "string"
         },
