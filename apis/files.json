@@ -92,7 +92,7 @@
               "message": "Group or document not found"
             }
           ],
-          "summary": "<b>V1</b> - Get files (Deprecated)",
+          "summary": "<b>V1</b> - Get files",
           "type": "array",
           "uniqueItems": true
         },
@@ -167,7 +167,7 @@
               "message": "Client data stream prematurely terminated"
             }
           ],
-          "summary": "<b>V1</b> - Upload a file to a user document or linking file content ticket to a file (Deprecated)",
+          "summary": "<b>V1</b> - Upload a file to a user document or linking file content ticket to a file",
           "type": "File"
         }
       ],
@@ -211,7 +211,7 @@
               "message": "File not found"
             }
           ],
-          "summary": "<b>V1</b> - Delete a file (Deprecated)",
+          "summary": "<b>V1</b> - Delete a file",
           "type": "void"
         },
         {
@@ -254,7 +254,7 @@
               "message": "Blocked for legal reasons"
             }
           ],
-          "summary": "<b>V1</b> - Download a file (Deprecated)",
+          "summary": "<b>V1</b> - Download a file",
           "type": "void"
         }
       ],
