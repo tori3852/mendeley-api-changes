@@ -32,7 +32,7 @@
               "message": "Success"
             }
           ],
-          "summary": "<b>V1</b> - Get all groups where the current user is a member",
+          "summary": "<b>V1</b> - Get all groups where the current user is a member (Deprecated)",
           "type": "array"
         }
       ],
@@ -71,7 +71,7 @@
               "message": "Insufficient permissions to view group details"
             }
           ],
-          "summary": "<b>V1</b> - Get details for a group",
+          "summary": "<b>V1</b> - Get details for a group (Deprecated)",
           "type": "Group"
         }
       ],
@@ -123,7 +123,7 @@
               "message": "Insufficient permissions to list members in this group"
             }
           ],
-          "summary": "<b>V1</b> - List members of group",
+          "summary": "<b>V1</b> - List members of group (Deprecated)",
           "type": "array"
         }
       ],
