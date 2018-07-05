@@ -512,6 +512,49 @@
           ],
           "summary": "<b>V1-BETA</b> - Modify a file's metadata",
           "type": "void"
+        },
+        {
+          "authorizations": {},
+          "method": "PUT",
+          "nickname": "reinstate",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>ALPHA</b> stage, which means that it is very likely change in the future; Alpha endpoints are not accessible in Production.<br />",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "File ID",
+              "name": "file_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            " "
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Success, the file has been reinstated"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 412,
+              "message": "File already exists"
+            }
+          ],
+          "summary": "<b>V1-ALPHA</b> - Reinstate a file to a document",
+          "type": "void"
         }
       ],
       "path": "/documents/v1/{document_id}/files/{file_id}"
