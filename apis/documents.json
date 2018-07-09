@@ -349,7 +349,7 @@
         {
           "authorizations": {},
           "consumes": [
-            "application/json"
+            "application/vnd.mendeley-document-file-reinstatement+json"
           ],
           "method": "POST",
           "nickname": "reinstate",
