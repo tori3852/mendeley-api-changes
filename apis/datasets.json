@@ -158,6 +158,14 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "description": "Filter by Mendeley profile UUID",
+              "name": "profile_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "defaultValue": "id",
               "description": "Comma-separated fields to retrieve for each dataset in the results",
               "name": "fields",
