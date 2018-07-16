@@ -1961,6 +1961,9 @@
     "LicenceInfo": {
       "id": "LicenceInfo",
       "properties": {
+        "category": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
