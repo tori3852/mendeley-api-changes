@@ -1485,7 +1485,7 @@
         },
         "categories": {
           "items": {
-            "$ref": "LinkCategoryRequest"
+            "$ref": "Category"
           },
           "type": "array"
         },
@@ -1668,7 +1668,7 @@
       "properties": {
         "categories": {
           "items": {
-            "$ref": "LinkCategoryRequest"
+            "$ref": "Category"
           },
           "type": "array"
         },
@@ -1988,14 +1988,6 @@
           "type": "string"
         },
         "linking_code": {
-          "type": "string"
-        }
-      }
-    },
-    "LinkCategoryRequest": {
-      "id": "LinkCategoryRequest",
-      "properties": {
-        "id": {
           "type": "string"
         }
       }
