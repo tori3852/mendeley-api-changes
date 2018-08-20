@@ -1833,6 +1833,9 @@
         },
         "folder_id": {
           "type": "string"
+        },
+        "path": {
+          "type": "string"
         }
       }
     },
@@ -1890,6 +1893,9 @@
           "type": "string"
         },
         "parent_id": {
+          "type": "string"
+        },
+        "path": {
           "type": "string"
         }
       }
