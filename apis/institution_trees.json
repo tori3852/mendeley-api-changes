@@ -31,7 +31,7 @@
             },
             {
               "code": 413,
-              "message": "Tree to large. i.e. Any parent with greater than 100 children"
+              "message": "Tree too large. i.e. Any parent with greater than 100 children"
             }
           ],
           "summary": "<b>V1</b> - Get complete institution trees.",
@@ -67,7 +67,7 @@
             },
             {
               "code": 413,
-              "message": "Tree to large.  i.e. Any parent with greater than 100 children"
+              "message": "Tree too large.  i.e. Any parent with greater than 100 children"
             },
             {
               "code": 404,
