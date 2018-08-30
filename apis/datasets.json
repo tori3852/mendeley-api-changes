@@ -1058,6 +1058,48 @@
           ],
           "summary": "<b>V1-BETA</b> - Get draft dataset's folders",
           "type": "array"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/json"
+          ],
+          "method": "PATCH",
+          "nickname": "moveMultipleFolders",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Values to update",
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "MoveMultipleFoldersRequest"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "Folders moved to a specific folder."
+            },
+            {
+              "code": 404,
+              "message": "Dataset or folder not found."
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Move list of folders to a specific folder",
+          "type": "Response"
         }
       ],
       "path": "/datasets/v1/drafts/{id}/folders"
@@ -2022,6 +2064,20 @@
         }
       }
     },
+    "MoveMultipleFoldersRequest": {
+      "id": "MoveMultipleFoldersRequest",
+      "properties": {
+        "folder_ids": {
+          "items": {
+            "$ref": "UUID"
+          },
+          "type": "array"
+        },
+        "parent_folder_id": {
+          "type": "string"
+        }
+      }
+    },
     "OwnerDetails": {
       "id": "OwnerDetails",
       "properties": {
@@ -2180,6 +2236,21 @@
         }
       }
     },
+    "Response": {
+      "id": "Response",
+      "properties": {
+        "entity": {
+          "$ref": "Object"
+        },
+        "metadata": {
+          "$ref": "javax.ws.rs.core.MultivaluedMap<java.lang.String, java.lang.Object>"
+        },
+        "status": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
     "SubmissionCreationRequest": {
       "id": "SubmissionCreationRequest",
       "properties": {
@@ -2236,6 +2307,19 @@
         },
         "submission_token": {
           "type": "string"
+        }
+      }
+    },
+    "UUID": {
+      "id": "UUID",
+      "properties": {
+        "leastSignificantBits": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "mostSignificantBits": {
+          "format": "int64",
+          "type": "integer"
         }
       }
     },
