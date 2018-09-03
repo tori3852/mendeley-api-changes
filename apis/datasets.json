@@ -260,6 +260,14 @@
             },
             {
               "allowMultiple": false,
+              "defaultValue": "false",
+              "name": "include_version",
+              "paramType": "query",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "allowMultiple": false,
               "name": "submission_token",
               "paramType": "query",
               "required": false,
