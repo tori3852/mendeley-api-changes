@@ -32,8 +32,10 @@ done
 
 echo "Recording changes"
 
+changes=$(git -C mendeley-api-changes/apis status | grep '^\t.*')
+
 git -C mendeley-api-changes/ add apis/
-git -C mendeley-api-changes/ -c user.name=heroku -c user.email=heroku commit -m "API changes for: $(date)"
+git -C mendeley-api-changes/ -c user.name=heroku -c user.email=heroku commit -m "API changes for: $(date):\n\n$changes"
 
 echo "Pushing changes"
 git -C mendeley-api-changes/ push
