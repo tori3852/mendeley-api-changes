@@ -32,7 +32,7 @@ done
 
 echo "Recording changes"
 
-changes=$(git -C mendeley-api-changes/apis status | grep '^\t.*')
+changes="$(git -C mendeley-api-changes/apis status)"
 
 echo "Changes: $changes"
 
