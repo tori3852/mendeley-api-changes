@@ -52,6 +52,46 @@
     {
       "operations": [
         {
+          "method": "GET",
+          "nickname": "getAssetBySubmissionId",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "submissionId",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-submission-profile+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Profile retrieved."
+            },
+            {
+              "code": 404,
+              "message": "Profile not found.",
+              "responseModel": "Error"
+            },
+            {
+              "code": 401,
+              "message": "Access not authorized",
+              "responseModel": "Error"
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Retrieve a profile by submission id",
+          "type": "Profile"
+        }
+      ],
+      "path": "/dataset_profiles/v1/submission/{submissionId}"
+    },
+    {
+      "operations": [
+        {
           "consumes": [
             "application/vnd.mendeley-submission-profile+json"
           ],
@@ -132,7 +172,7 @@
               "responseModel": "Error"
             }
           ],
-          "summary": "<b>V1</b> - Delete profile by submission id",
+          "summary": "<b>V1</b> - Delete profile by profile id",
           "type": "void"
         },
         {
@@ -167,7 +207,7 @@
               "responseModel": "Error"
             }
           ],
-          "summary": "<b>V1</b> - Retrieve a profile by submission id",
+          "summary": "<b>V1</b> - Retrieve a profile by profile id",
           "type": "Profile"
         }
       ],

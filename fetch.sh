@@ -17,7 +17,7 @@ git clone git@github.com:tori3852/mendeley-api-changes.git
 mkdir mendeley-api-changes/apis/
 
 echo "Fetching API"
-endpoints=$(curl -vs "https://api.mendeley.com/apidocs/apis" | $main_dir/bin/jq -rS '.apis[].path')
+endpoints=$(curl --retry 5 -vs "https://api.mendeley.com/apidocs/apis" | $main_dir/bin/jq -rS '.apis[].path')
 
 for endpoint in $endpoints;
   do
@@ -25,7 +25,7 @@ for endpoint in $endpoints;
     endpoint="$(echo $endpoint | sed 's|^/||')"
     file="$(echo $endpoint | sed 's|/|_|g').json"
     # Sort by: '.apis[].path' + '.apis[].operations.nickname'
-    curl -vs "https://api.mendeley.com/apidocs/apis/$endpoint" \
+    curl -retry 5 -vs "https://api.mendeley.com/apidocs/apis/$endpoint" \
     | $main_dir/bin/jq -S '.apis |= sort_by(.path) | .apis[].operations |= sort_by(.nickname)' \
     > "mendeley-api-changes/apis/$file"
 done
