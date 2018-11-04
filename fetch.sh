@@ -39,7 +39,7 @@ echo "Changes: $changes"
 git -C mendeley-api-changes/ add apis/
 echo "Changes added to git"
 
-git -C mendeley-api-changes/ -c user.name=heroku -c user.email=heroku commit -m "API changes for: $(date):\n\n$changes"
+git -C mendeley-api-changes/ -c user.name=heroku -c user.email=heroku commit -m "API changes for $(date '+%F %H:%M:%S'): $changes"
 echo "Changes commited to git"
 
 echo "Pushing changes"
