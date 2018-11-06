@@ -32,7 +32,7 @@ done
 
 echo "Recording changes"
 
-changes="$(git -C mendeley-api-changes/apis status)"
+changes="$(git -C mendeley-api-changes/apis status -s | tr "\n" " ")"
 
 echo "Changes: $changes"
 
