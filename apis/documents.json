@@ -4,7 +4,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "consumes": [
             "application/vnd.mendeley-document.1+json"
           ],
@@ -37,7 +36,6 @@
           "type": "UserDocument"
         },
         {
-          "authorizations": {},
           "items": {
             "$ref": "UserDocument"
           },
@@ -47,33 +45,8 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Group ID.  If not supplied, returns user documents",
-              "name": "group_id",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Returns only documents modified since this timestamp.  Should be supplied in ISO 8601 format",
-              "name": "modified_since",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Returns only documents deleted since this timestamp.  Should be supplied in ISO 8601 format",
-              "name": "deleted_since",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Returns documents belonging to this profile ID, that do not belong to any group",
-              "name": "profile_id",
-              "paramType": "query",
+              "name": "Accept",
+              "paramType": "header",
               "required": false,
               "type": "string"
             },
@@ -87,27 +60,24 @@
             },
             {
               "allowMultiple": false,
-              "description": "Returns only documents that are starred",
-              "name": "starred",
+              "description": "Returns only documents deleted since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "deleted_since",
               "paramType": "query",
               "required": false,
-              "type": "boolean"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Returns only documents that have at least one of the given tags",
-              "items": {
-                "type": "string"
-              },
-              "name": "tag",
-              "paramType": "query",
-              "required": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "allowMultiple": false,
               "description": "Returns only documents that have the given folder_id",
               "name": "folder_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Group ID.  If not supplied, returns user documents",
+              "name": "group_id",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -122,25 +92,18 @@
             },
             {
               "allowMultiple": false,
-              "description": "View",
-              "enum": [
-                "bib",
-                "patent",
-                "client",
-                "tags",
-                "all"
-              ],
-              "name": "view",
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
               "paramType": "query",
               "required": false,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
-              "maximum": "500",
-              "minimum": "1",
-              "name": "limit",
+              "description": "Returns only documents modified since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "modified_since",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -153,6 +116,14 @@
                 "desc"
               ],
               "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns documents belonging to this profile ID, that do not belong to any group",
+              "name": "profile_id",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -172,18 +143,30 @@
             },
             {
               "allowMultiple": false,
-              "name": "Accept",
-              "paramType": "header",
+              "description": "Returns only documents that are starred",
+              "name": "starred",
+              "paramType": "query",
               "required": false,
-              "type": "string"
+              "type": "boolean"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only documents that have at least one of the given tags",
+              "items": {
+                "type": "string"
+              },
+              "name": "tag",
+              "paramType": "query",
+              "required": false,
+              "type": "array"
             }
           ],
           "produces": [
-            "application/vnd.mendeley-document.1+json",
-            "application/x-bibtex",
+            "application/vnd.mendeley-document-summary+json",
             "application/vnd.mendeley-document-with-files-list+json",
+            "application/vnd.mendeley-document.1+json",
             "application/vnd.mendeley-msword-bibliography+xml",
-            "application/vnd.mendeley-document-summary+json"
+            "application/x-bibtex"
           ],
           "responseMessages": [
             {
@@ -204,7 +187,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "items": {
             "$ref": "File"
           },
@@ -212,14 +194,6 @@
           "nickname": "getFiles",
           "notes": "",
           "parameters": [
-            {
-              "allowMultiple": false,
-              "description": "Document ID",
-              "name": "document_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
             {
               "allowMultiple": false,
               "description": "Returns only files added since this timestamp.  Should be supplied in ISO 8601 format",
@@ -234,6 +208,14 @@
               "name": "deleted_since",
               "paramType": "query",
               "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
               "type": "string"
             },
             {
@@ -273,7 +255,6 @@
           "uniqueItems": true
         },
         {
-          "authorizations": {},
           "consumes": [
             "*/*"
           ],
@@ -281,14 +262,6 @@
           "nickname": "uploadOrLinkFile",
           "notes": "This endpoint supports both: directly uploading a file and linking a file content ticket to a file. Owing to a Swagger limitation it is not possible to test the linking functionality from this page.Please see details on how to test linking <a href=\"http://dev.mendeley.com/methods/?shell#linking-a-file-content-to-a-file\">here</a><br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
           "parameters": [
-            {
-              "allowMultiple": false,
-              "description": "Document ID",
-              "name": "document_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
             {
               "allowMultiple": false,
               "description": "The content disposition, including the filename (see RFC 1806)",
@@ -299,18 +272,26 @@
             },
             {
               "allowMultiple": false,
+              "name": "Content-Type",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "The file to upload",
               "name": "file",
               "paramType": "body",
               "required": true,
               "type": "file"
-            },
-            {
-              "allowMultiple": false,
-              "name": "Content-Type",
-              "paramType": "header",
-              "required": false,
-              "type": "string"
             }
           ],
           "produces": [
@@ -347,7 +328,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "consumes": [
             "application/vnd.mendeley-document-file-reinstatement+json"
           ],
@@ -357,19 +337,19 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Document ID",
-              "name": "document_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "description": "File reinstatement spec",
               "name": "body",
               "paramType": "body",
               "required": true,
               "type": "FileReinstatement"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -398,7 +378,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "method": "DELETE",
           "nickname": "delete",
           "notes": "",
@@ -445,11 +424,17 @@
           "type": "void"
         },
         {
-          "authorizations": {},
           "method": "GET",
           "nickname": "downloadFile",
           "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
           "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "Accept",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            },
             {
               "allowMultiple": false,
               "description": "Document ID",
@@ -464,13 +449,6 @@
               "name": "file_id",
               "paramType": "path",
               "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "Accept",
-              "paramType": "header",
-              "required": false,
               "type": "string"
             }
           ],
@@ -507,7 +485,6 @@
           "type": "void"
         },
         {
-          "authorizations": {},
           "consumes": [
             "application/vnd.mendeley-document-file-patch+json"
           ],
@@ -515,6 +492,14 @@
           "nickname": "modify",
           "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
           "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "File patch",
+              "name": "body",
+              "paramType": "body",
+              "required": true,
+              "type": "FilePatch"
+            },
             {
               "allowMultiple": false,
               "description": "Document ID",
@@ -530,14 +515,6 @@
               "paramType": "path",
               "required": true,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "File patch",
-              "name": "body",
-              "paramType": "body",
-              "required": true,
-              "type": "FilePatch"
             }
           ],
           "produces": [
@@ -565,7 +542,6 @@
           "type": "void"
         },
         {
-          "authorizations": {},
           "method": "PUT",
           "nickname": "reinstate",
           "notes": "<br /><h2>Warning</h2> This endpoint is in <b>ALPHA</b> stage, which means that it is very likely change in the future; Alpha endpoints are not accessible in Production.<br />",
@@ -613,7 +589,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "method": "DELETE",
           "nickname": "deleteDocument",
           "notes": "",
@@ -644,11 +619,17 @@
           "type": "void"
         },
         {
-          "authorizations": {},
           "method": "GET",
           "nickname": "getDocument",
           "notes": "",
           "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "Accept",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            },
             {
               "allowMultiple": false,
               "description": "Document ID",
@@ -671,21 +652,14 @@
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "Accept",
-              "paramType": "header",
-              "required": false,
-              "type": "string"
             }
           ],
           "produces": [
-            "application/vnd.mendeley-document.1+json",
-            "application/x-bibtex",
+            "application/vnd.mendeley-document-summary+json",
             "application/vnd.mendeley-document-with-files-list+json",
+            "application/vnd.mendeley-document.1+json",
             "application/vnd.mendeley-msword-bibliography+xml",
-            "application/vnd.mendeley-document-summary+json"
+            "application/x-bibtex"
           ],
           "responseMessages": [
             {
@@ -705,7 +679,6 @@
           "type": "UserDocument"
         },
         {
-          "authorizations": {},
           "consumes": [
             "application/vnd.mendeley-document.1+json"
           ],
@@ -713,14 +686,6 @@
           "nickname": "updateDocument",
           "notes": "",
           "parameters": [
-            {
-              "allowMultiple": false,
-              "description": "Document ID",
-              "name": "id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
             {
               "allowMultiple": false,
               "description": "If specified, the document will not be updated if there have been any other changes since this timestamp.  Should be specified in RFC 2822 format.",
@@ -735,6 +700,14 @@
               "paramType": "body",
               "required": false,
               "type": "UserDocumentAmendment"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -783,7 +756,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "method": "POST",
           "nickname": "moveDocumentToTrash",
           "notes": "",

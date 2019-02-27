@@ -33,13 +33,13 @@
               "responseModel": "Error"
             },
             {
-              "code": 409,
-              "message": "Profile already exists for specified submission id.",
+              "code": 401,
+              "message": "Access not authorized",
               "responseModel": "Error"
             },
             {
-              "code": 401,
-              "message": "Access not authorized",
+              "code": 409,
+              "message": "Profile already exists for specified submission id.",
               "responseModel": "Error"
             }
           ],
@@ -73,13 +73,13 @@
               "message": "Profile retrieved."
             },
             {
-              "code": 404,
-              "message": "Profile not found.",
+              "code": 401,
+              "message": "Access not authorized",
               "responseModel": "Error"
             },
             {
-              "code": 401,
-              "message": "Access not authorized",
+              "code": 404,
+              "message": "Profile not found.",
               "responseModel": "Error"
             }
           ],
@@ -101,17 +101,17 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "name": "id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "name": "body",
               "paramType": "body",
               "required": false,
               "type": "Profile"
+            },
+            {
+              "allowMultiple": false,
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -123,10 +123,6 @@
               "message": "Profile modified successfully."
             },
             {
-              "code": 404,
-              "message": "Profile not found."
-            },
-            {
               "code": 400,
               "message": "Invalid request.",
               "responseModel": "Error"
@@ -135,6 +131,10 @@
               "code": 401,
               "message": "Access not authorized",
               "responseModel": "Error"
+            },
+            {
+              "code": 404,
+              "message": "Profile not found."
             }
           ],
           "summary": "<b>V1</b> - Modify an existing profile",
@@ -162,13 +162,13 @@
               "message": "Profile deleted."
             },
             {
-              "code": 404,
-              "message": "Profile not found.",
+              "code": 401,
+              "message": "Access not authorized",
               "responseModel": "Error"
             },
             {
-              "code": 401,
-              "message": "Access not authorized",
+              "code": 404,
+              "message": "Profile not found.",
               "responseModel": "Error"
             }
           ],
@@ -197,13 +197,13 @@
               "message": "Profile retrieved."
             },
             {
-              "code": 404,
-              "message": "Profile not found.",
+              "code": 401,
+              "message": "Access not authorized",
               "responseModel": "Error"
             },
             {
-              "code": 401,
-              "message": "Access not authorized",
+              "code": 404,
+              "message": "Profile not found.",
               "responseModel": "Error"
             }
           ],
@@ -244,13 +244,13 @@
               "message": "Link deleted."
             },
             {
-              "code": 404,
-              "message": "Profile or link not found.",
+              "code": 401,
+              "message": "Access not authorized",
               "responseModel": "Error"
             },
             {
-              "code": 401,
-              "message": "Access not authorized",
+              "code": 404,
+              "message": "Profile or link not found.",
               "responseModel": "Error"
             }
           ],

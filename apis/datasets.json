@@ -19,8 +19,9 @@
             },
             {
               "allowMultiple": false,
-              "description": "Filter by journal ISSN",
-              "name": "issn",
+              "defaultValue": "results.id",
+              "description": "Comma-separated list of fields to retrieve for each dataset. Note: 'results.*' to return everything.",
+              "name": "fields",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -35,39 +36,8 @@
             },
             {
               "allowMultiple": false,
-              "description": "Filter by date of last dataset change",
-              "name": "modified_since",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": true,
-              "description": "Filter search results by file type",
-              "enum": [
-                "document",
-                "file_set",
-                "image",
-                "raw",
-                "slides",
-                "software",
-                "statistical_data",
-                "tabular_data",
-                "video"
-              ],
-              "items": {
-                "type": "string"
-              },
-              "name": "type",
-              "paramType": "query",
-              "required": false,
-              "type": "array"
-            },
-            {
-              "allowMultiple": false,
-              "defaultValue": "results.id",
-              "description": "Comma-separated list of fields to retrieve for each dataset. Note: 'results.*' to return everything.",
-              "name": "fields",
+              "description": "Filter by journal ISSN",
+              "name": "issn",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -78,6 +48,14 @@
               "maximum": "500",
               "minimum": "1",
               "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Filter by date of last dataset change",
+              "name": "modified_since",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -105,6 +83,28 @@
               "paramType": "query",
               "required": false,
               "type": "string"
+            },
+            {
+              "allowMultiple": true,
+              "description": "Filter search results by file type",
+              "enum": [
+                "document",
+                "file_set",
+                "image",
+                "raw",
+                "slides",
+                "software",
+                "statistical_data",
+                "tabular_data",
+                "video"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "name": "type",
+              "paramType": "query",
+              "required": false,
+              "type": "array"
             }
           ],
           "produces": [
@@ -158,14 +158,6 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Filter by Mendeley profile UUID",
-              "name": "profile_id",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "defaultValue": "id",
               "description": "Comma-separated fields to retrieve for each dataset in the results",
               "name": "fields",
@@ -191,6 +183,14 @@
                 "desc"
               ],
               "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Filter by Mendeley profile UUID",
+              "name": "profile_id",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -246,16 +246,18 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "name": "id",
-              "paramType": "path",
-              "required": true,
+              "defaultValue": "*",
+              "description": "BETA: Comma-separated list of fields to retrieve. Note: '*' to return everything.",
+              "name": "fields",
+              "paramType": "query",
+              "required": false,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "name": "view_token",
-              "paramType": "query",
-              "required": false,
+              "name": "id",
+              "paramType": "path",
+              "required": true,
               "type": "string"
             },
             {
@@ -275,9 +277,7 @@
             },
             {
               "allowMultiple": false,
-              "defaultValue": "*",
-              "description": "BETA: Comma-separated list of fields to retrieve. Note: '*' to return everything.",
-              "name": "fields",
+              "name": "view_token",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -335,18 +335,18 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "DraftDatasetPatch"
+            },
+            {
+              "allowMultiple": false,
               "description": "Dataset id",
               "name": "id",
               "paramType": "path",
               "required": true,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "DraftDatasetPatch"
             }
           ],
           "produces": [
@@ -413,18 +413,18 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "SubmissionCreationRequest"
+            },
+            {
+              "allowMultiple": false,
               "description": "Submission system id",
               "name": "submission_system",
               "paramType": "path",
               "required": true,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "SubmissionCreationRequest"
             }
           ],
           "produces": [
@@ -459,17 +459,17 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Submission system id",
-              "name": "submission_system",
-              "paramType": "path",
+              "description": "Secondary Submission id",
+              "name": "secondary_submission_id",
+              "paramType": "query",
               "required": true,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "description": "Secondary Submission id",
-              "name": "secondary_submission_id",
-              "paramType": "query",
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
               "required": true,
               "type": "string"
             }
@@ -493,16 +493,16 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Submission system id",
-              "name": "submission_system",
+              "description": "Submission id",
+              "name": "id",
               "paramType": "path",
               "required": true,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "description": "Submission id",
-              "name": "id",
+              "description": "Submission system id",
+              "name": "submission_system",
               "paramType": "path",
               "required": true,
               "type": "string"
@@ -547,11 +547,10 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Submission system id",
-              "name": "submission_system",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "SubmissionModificationRequest"
             },
             {
               "allowMultiple": false,
@@ -563,18 +562,19 @@
             },
             {
               "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Submission Token",
               "name": "submission_token",
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "SubmissionModificationRequest"
             }
           ],
           "produces": [
@@ -614,11 +614,10 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Submission system id",
-              "name": "submission_system",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "DatasetCreationRequest"
             },
             {
               "allowMultiple": false,
@@ -630,18 +629,19 @@
             },
             {
               "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Submission Token",
               "name": "submission_token",
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "DatasetCreationRequest"
             }
           ],
           "produces": [
@@ -678,22 +678,6 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Submission system id",
-              "name": "submission_system",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Submission id",
-              "name": "id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "defaultValue": "id",
               "description": "Comma-separated fields to retrieve for each dataset in the results",
               "name": "fields",
@@ -703,10 +687,10 @@
             },
             {
               "allowMultiple": false,
-              "description": "Submission Token",
-              "name": "submission_token",
-              "paramType": "query",
-              "required": false,
+              "description": "Submission id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
               "type": "string"
             },
             {
@@ -727,6 +711,22 @@
                 "desc"
               ],
               "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission system id",
+              "name": "submission_system",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Submission Token",
+              "name": "submission_token",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -767,8 +767,8 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Submission system id",
-              "name": "submission_system",
+              "description": "Dataset id",
+              "name": "dataset_id",
               "paramType": "path",
               "required": true,
               "type": "string"
@@ -783,8 +783,8 @@
             },
             {
               "allowMultiple": false,
-              "description": "Dataset id",
-              "name": "dataset_id",
+              "description": "Submission system id",
+              "name": "submission_system",
               "paramType": "path",
               "required": true,
               "type": "string"
@@ -840,8 +840,15 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Submission system id",
-              "name": "submission_system",
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "DraftDatasetPatch"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "dataset_id",
               "paramType": "path",
               "required": true,
               "type": "string"
@@ -856,8 +863,8 @@
             },
             {
               "allowMultiple": false,
-              "description": "Dataset id",
-              "name": "dataset_id",
+              "description": "Submission system id",
+              "name": "submission_system",
               "paramType": "path",
               "required": true,
               "type": "string"
@@ -869,13 +876,6 @@
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "DraftDatasetPatch"
             }
           ],
           "produces": [
@@ -921,6 +921,14 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "description": "Folders to be added",
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "FolderStructureRequest"
+            },
+            {
+              "allowMultiple": false,
               "description": "Dataset id",
               "name": "id",
               "paramType": "path",
@@ -934,14 +942,6 @@
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Folders to be added",
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "FolderStructureRequest"
             }
           ],
           "produces": [
@@ -953,16 +953,16 @@
               "message": "Folders created."
             },
             {
+              "code": 403,
+              "message": "User not Authorised to create a folder"
+            },
+            {
               "code": 404,
               "message": "Dataset or parent not found."
             },
             {
               "code": 409,
               "message": "Folder already exists"
-            },
-            {
-              "code": 403,
-              "message": "User not Authorised to create a folder"
             }
           ],
           "summary": "<b>V1-BETA</b> - Add folder structure",
@@ -979,19 +979,19 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Dataset id",
-              "name": "id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "description": "New folder",
               "name": "body",
               "paramType": "body",
               "required": false,
               "type": "FolderCreationRequest"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -1003,16 +1003,16 @@
               "message": "Folder created."
             },
             {
+              "code": 403,
+              "message": "User not Authorised to create a folder"
+            },
+            {
               "code": 404,
               "message": "Dataset or parent not found."
             },
             {
               "code": 409,
               "message": "Folder already exists"
-            },
-            {
-              "code": 403,
-              "message": "User not Authorised to create a folder"
             }
           ],
           "summary": "<b>V1-BETA</b> - Create a folder",
@@ -1037,15 +1037,15 @@
             },
             {
               "allowMultiple": false,
-              "name": "view_token",
+              "description": "Parent folder",
+              "name": "parent_id",
               "paramType": "query",
               "required": false,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "description": "Parent folder",
-              "name": "parent_id",
+              "name": "view_token",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -1078,19 +1078,19 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Dataset id",
-              "name": "id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "description": "Values to update",
               "name": "body",
               "paramType": "body",
               "required": false,
               "type": "MoveMultipleFoldersRequest"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -1122,16 +1122,16 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Dataset id",
-              "name": "id",
+              "description": "Folder id",
+              "name": "folder_id",
               "paramType": "path",
               "required": true,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "description": "Folder id",
-              "name": "folder_id",
+              "description": "Dataset id",
+              "name": "id",
               "paramType": "path",
               "required": true,
               "type": "string"
@@ -1165,6 +1165,14 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "description": "Folder id",
+              "name": "folder_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Dataset id",
               "name": "id",
               "paramType": "path",
@@ -1176,14 +1184,6 @@
               "name": "view_token",
               "paramType": "query",
               "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Folder id",
-              "name": "folder_id",
-              "paramType": "path",
-              "required": true,
               "type": "string"
             }
           ],
@@ -1214,11 +1214,11 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Dataset id",
-              "name": "id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
+              "description": "Values to update",
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "FolderPatchRequest"
             },
             {
               "allowMultiple": false,
@@ -1230,11 +1230,11 @@
             },
             {
               "allowMultiple": false,
-              "description": "Values to update",
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "FolderPatchRequest"
+              "description": "Dataset id",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -1281,20 +1281,20 @@
             },
             {
               "allowMultiple": false,
+              "description": "Parent folder",
+              "name": "parent_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Dataset version",
               "format": "int64",
               "name": "version",
               "paramType": "query",
               "required": true,
               "type": "integer"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Parent folder",
-              "name": "parent_id",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
             }
           ],
           "produces": [
@@ -1306,12 +1306,12 @@
               "message": "Here are the folders."
             },
             {
-              "code": 451,
-              "message": "Dataset under embargo."
-            },
-            {
               "code": 404,
               "message": "Dataset not found."
+            },
+            {
+              "code": 451,
+              "message": "Dataset under embargo."
             }
           ],
           "summary": "<b>V1-BETA</b> - Get published dataset's folders",
@@ -1330,6 +1330,14 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "description": "Folder id",
+              "name": "folder_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Dataset id",
               "name": "id",
               "paramType": "path",
@@ -1344,14 +1352,6 @@
               "paramType": "query",
               "required": false,
               "type": "integer"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Folder id",
-              "name": "folder_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
             }
           ],
           "produces": [
@@ -1363,12 +1363,12 @@
               "message": "Here's the folder."
             },
             {
-              "code": 451,
-              "message": "Dataset under embargo."
-            },
-            {
               "code": 404,
               "message": "Dataset or folder not found."
+            },
+            {
+              "code": 451,
+              "message": "Dataset under embargo."
             }
           ],
           "summary": "<b>V1-BETA</b> - Get published dataset's folder",
@@ -1387,6 +1387,15 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "defaultValue": "*",
+              "description": "BETA: Comma-separated list of fields to retrieve for the dataset. Note: '*' to return everything.",
+              "name": "fields",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "The id of the dataset to retrieve",
               "name": "id",
               "paramType": "path",
@@ -1401,15 +1410,6 @@
               "paramType": "query",
               "required": false,
               "type": "integer"
-            },
-            {
-              "allowMultiple": false,
-              "defaultValue": "*",
-              "description": "BETA: Comma-separated list of fields to retrieve for the dataset. Note: '*' to return everything.",
-              "name": "fields",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
             }
           ],
           "produces": [

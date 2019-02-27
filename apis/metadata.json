@@ -18,28 +18,14 @@
             },
             {
               "allowMultiple": false,
+              "name": "authors",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "name": "doi",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "pmid",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "isbn",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "title",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -53,14 +39,14 @@
             },
             {
               "allowMultiple": false,
-              "name": "authors",
+              "name": "isbn",
               "paramType": "query",
               "required": false,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "name": "year",
+              "name": "pmid",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -68,6 +54,20 @@
             {
               "allowMultiple": false,
               "name": "source",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "title",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "year",
               "paramType": "query",
               "required": false,
               "type": "string"

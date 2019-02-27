@@ -38,6 +38,14 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "description": "Returns only annotations deleted since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "deleted_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Document Id",
               "name": "document_id",
               "paramType": "query",
@@ -62,26 +70,18 @@
             },
             {
               "allowMultiple": false,
-              "description": "Returns only annotations modified since this timestamp.  Should be supplied in ISO 8601 format",
-              "name": "modified_since",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Returns only annotations deleted since this timestamp.  Should be supplied in ISO 8601 format",
-              "name": "deleted_since",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 200.",
               "maximum": "200",
               "minimum": "1",
               "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Returns only annotations modified since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "modified_since",
               "paramType": "query",
               "required": false,
               "type": "string"

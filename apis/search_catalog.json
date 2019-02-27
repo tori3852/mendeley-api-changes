@@ -14,16 +14,8 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Query, matches any field",
-              "name": "query",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Title",
-              "name": "title",
+              "description": "Abstract",
+              "name": "abstract",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -38,34 +30,28 @@
             },
             {
               "allowMultiple": false,
-              "description": "Source, e.g. publication",
-              "name": "source",
+              "description": "The maximum number of items on the page. If not supplied, the default is 10. The largest allowable value is 100.",
+              "maximum": "100",
+              "minimum": "1",
+              "name": "limit",
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Abstract",
-              "name": "abstract",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Minimum year",
-              "format": "int32",
-              "name": "min_year",
-              "paramType": "query",
-              "required": false,
-              "type": "integer"
             },
             {
               "allowMultiple": false,
               "description": "Maximum year",
               "format": "int32",
               "name": "max_year",
+              "paramType": "query",
+              "required": false,
+              "type": "integer"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Minimum year",
+              "format": "int32",
+              "name": "min_year",
               "paramType": "query",
               "required": false,
               "type": "integer"
@@ -80,6 +66,30 @@
             },
             {
               "allowMultiple": false,
+              "description": "Query, matches any field",
+              "name": "query",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Source, e.g. publication",
+              "name": "source",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Title",
+              "name": "title",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "View",
               "enum": [
                 "bib",
@@ -88,16 +98,6 @@
                 "all"
               ],
               "name": "view",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "The maximum number of items on the page. If not supplied, the default is 10. The largest allowable value is 100.",
-              "maximum": "100",
-              "minimum": "1",
-              "name": "limit",
               "paramType": "query",
               "required": false,
               "type": "string"

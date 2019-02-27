@@ -28,6 +28,13 @@
             },
             {
               "allowMultiple": false,
+              "name": "filehash",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "name": "isbn",
               "paramType": "query",
               "required": false,
@@ -42,14 +49,14 @@
             },
             {
               "allowMultiple": false,
-              "name": "pmid",
+              "name": "pii",
               "paramType": "query",
               "required": false,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "name": "scopus",
+              "name": "pmid",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -63,7 +70,7 @@
             },
             {
               "allowMultiple": false,
-              "name": "pii",
+              "name": "scopus",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -71,13 +78,6 @@
             {
               "allowMultiple": false,
               "name": "sgr",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "filehash",
               "paramType": "query",
               "required": false,
               "type": "string"

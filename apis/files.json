@@ -14,8 +14,8 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "The document ID",
-              "name": "document_id",
+              "description": "Returns only files added since this timestamp.  Should be supplied in ISO 8601 format",
+              "name": "added_since",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -30,24 +30,24 @@
             },
             {
               "allowMultiple": false,
-              "description": "The group ID",
-              "name": "group_id",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Returns only files added since this timestamp.  Should be supplied in ISO 8601 format",
-              "name": "added_since",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "description": "Returns files deleted since this timestamp.  Should be supplied in ISO 8601 format",
               "name": "deleted_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The document ID",
+              "name": "document_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The group ID",
+              "name": "group_id",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -112,6 +112,13 @@
             },
             {
               "allowMultiple": false,
+              "name": "Content-Type",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "The URL of the document.  This should have relation \"document\" (see RFC 5988)",
               "name": "Link",
               "paramType": "header",
@@ -125,13 +132,6 @@
               "paramType": "body",
               "required": true,
               "type": "file"
-            },
-            {
-              "allowMultiple": false,
-              "name": "Content-Type",
-              "paramType": "header",
-              "required": false,
-              "type": "string"
             }
           ],
           "produces": [

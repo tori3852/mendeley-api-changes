@@ -14,8 +14,8 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Link",
-              "name": "link",
+              "description": "Catalog ID of document whose authors' profiles will be returned; the returned profiles are based on a name match and therefore approximate",
+              "name": "authored_document_catalog_id",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -30,8 +30,8 @@
             },
             {
               "allowMultiple": false,
-              "description": "Catalog ID of document whose authors' profiles will be returned; the returned profiles are based on a name match and therefore approximate",
-              "name": "authored_document_catalog_id",
+              "description": "Link",
+              "name": "link",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -95,8 +95,8 @@
         {
           "authorizations": {},
           "consumes": [
-            "application/vnd.mendeley-profile-amendment.1+json",
-            "application/json"
+            "application/json",
+            "application/vnd.mendeley-profile-amendment.1+json"
           ],
           "method": "PATCH",
           "nickname": "updateMyProfile",

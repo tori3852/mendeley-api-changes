@@ -4,7 +4,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "items": {
             "$ref": "UserDocument"
           },
@@ -14,9 +13,8 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Group ID.  If not supplied, returns user documents",
-              "name": "group_id",
-              "paramType": "query",
+              "name": "Accept",
+              "paramType": "header",
               "required": false,
               "type": "string"
             },
@@ -30,42 +28,16 @@
             },
             {
               "allowMultiple": false,
+              "description": "Group ID.  If not supplied, returns user documents",
+              "name": "group_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Returns only documents modified since this timestamp.  Should be supplied in ISO 8601 format",
               "name": "modified_since",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
-              "maximum": "500",
-              "minimum": "1",
-              "name": "limit",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "The sort order",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "name": "order",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "The field to sort on",
-              "enum": [
-                "document_id",
-                "deleted_at"
-              ],
-              "name": "sort",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -84,21 +56,14 @@
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "Accept",
-              "paramType": "header",
-              "required": false,
-              "type": "string"
             }
           ],
           "produces": [
-            "application/vnd.mendeley-document.1+json",
-            "application/x-bibtex",
+            "application/vnd.mendeley-document-summary+json",
             "application/vnd.mendeley-document-with-files-list+json",
+            "application/vnd.mendeley-document.1+json",
             "application/vnd.mendeley-msword-bibliography+xml",
-            "application/vnd.mendeley-document-summary+json"
+            "application/x-bibtex"
           ],
           "summary": "<b>V1</b> - Get documents in trash",
           "type": "array"
@@ -109,7 +74,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "method": "DELETE",
           "nickname": "deleteDocument",
           "notes": "",
@@ -140,11 +104,17 @@
           "type": "void"
         },
         {
-          "authorizations": {},
           "method": "GET",
           "nickname": "getDocument",
           "notes": "",
           "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "Accept",
+              "paramType": "header",
+              "required": false,
+              "type": "string"
+            },
             {
               "allowMultiple": false,
               "description": "Document ID",
@@ -167,21 +137,14 @@
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "Accept",
-              "paramType": "header",
-              "required": false,
-              "type": "string"
             }
           ],
           "produces": [
-            "application/vnd.mendeley-document.1+json",
-            "application/x-bibtex",
+            "application/vnd.mendeley-document-summary+json",
             "application/vnd.mendeley-document-with-files-list+json",
+            "application/vnd.mendeley-document.1+json",
             "application/vnd.mendeley-msword-bibliography+xml",
-            "application/vnd.mendeley-document-summary+json"
+            "application/x-bibtex"
           ],
           "responseMessages": [
             {
@@ -206,7 +169,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "method": "POST",
           "nickname": "restoreDocument",
           "notes": "",

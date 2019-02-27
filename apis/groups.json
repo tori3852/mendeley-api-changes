@@ -63,12 +63,12 @@
               "message": "Success"
             },
             {
-              "code": 404,
-              "message": "Group not found"
-            },
-            {
               "code": 403,
               "message": "Insufficient permissions to view group details"
+            },
+            {
+              "code": 404,
+              "message": "Group not found"
             }
           ],
           "summary": "<b>V1</b> - Get details for a group (Deprecated)",
@@ -115,12 +115,12 @@
               "message": "Members found"
             },
             {
-              "code": 404,
-              "message": "Group not found"
-            },
-            {
               "code": 403,
               "message": "Insufficient permissions to list members in this group"
+            },
+            {
+              "code": 404,
+              "message": "Group not found"
             }
           ],
           "summary": "<b>V1</b> - List members of group (Deprecated)",

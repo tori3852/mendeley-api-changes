@@ -14,8 +14,14 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "Part of institution name",
-              "name": "hint",
+              "name": "city",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "country",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -24,6 +30,14 @@
               "allowMultiple": false,
               "description": "Email address",
               "name": "email",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Part of institution name",
+              "name": "hint",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -47,21 +61,7 @@
             },
             {
               "allowMultiple": false,
-              "name": "city",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "name": "state",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "country",
               "paramType": "query",
               "required": false,
               "type": "string"

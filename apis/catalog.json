@@ -21,7 +21,30 @@
             },
             {
               "allowMultiple": false,
+              "description": "Author Profile ID",
+              "name": "author_profile_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Document ID",
+              "name": "document_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "name": "doi",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "filehash",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -42,14 +65,14 @@
             },
             {
               "allowMultiple": false,
-              "name": "pmid",
+              "name": "pii",
               "paramType": "query",
               "required": false,
               "type": "string"
             },
             {
               "allowMultiple": false,
-              "name": "scopus",
+              "name": "pmid",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -63,7 +86,7 @@
             },
             {
               "allowMultiple": false,
-              "name": "pii",
+              "name": "scopus",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -71,13 +94,6 @@
             {
               "allowMultiple": false,
               "name": "sgr",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "filehash",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -99,22 +115,6 @@
                 "all"
               ],
               "name": "view",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Author Profile ID",
-              "name": "author_profile_id",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Document ID",
-              "name": "document_id",
               "paramType": "query",
               "required": false,
               "type": "string"

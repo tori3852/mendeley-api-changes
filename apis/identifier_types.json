@@ -4,7 +4,6 @@
     {
       "operations": [
         {
-          "authorizations": {},
           "items": {
             "$ref": "IdentifierTypeDefinition"
           },

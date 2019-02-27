@@ -14,14 +14,6 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "description": "First few characters of city name",
-              "name": "prefix",
-              "paramType": "query",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "defaultValue": "20",
               "description": "Max results to return (up to 100)",
               "format": "int32",
@@ -29,6 +21,14 @@
               "paramType": "query",
               "required": false,
               "type": "integer"
+            },
+            {
+              "allowMultiple": false,
+              "description": "First few characters of city name",
+              "name": "prefix",
+              "paramType": "query",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [

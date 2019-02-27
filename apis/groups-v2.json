@@ -55,11 +55,13 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "format": "int64",
-              "name": "user_id",
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
               "paramType": "query",
               "required": false,
-              "type": "integer"
+              "type": "string"
             },
             {
               "allowMultiple": false,
@@ -78,13 +80,11 @@
             },
             {
               "allowMultiple": false,
-              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
-              "maximum": "500",
-              "minimum": "1",
-              "name": "limit",
+              "format": "int64",
+              "name": "user_id",
               "paramType": "query",
               "required": false,
-              "type": "string"
+              "type": "integer"
             }
           ],
           "produces": [
@@ -259,17 +259,17 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "name": "group_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "name": "body",
               "paramType": "body",
               "required": false,
               "type": "UpdateGroupRequest"
+            },
+            {
+              "allowMultiple": false,
+              "name": "group_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -396,17 +396,17 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "name": "group_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "name": "body",
               "paramType": "body",
               "required": false,
               "type": "GroupMessage"
+            },
+            {
+              "allowMultiple": false,
+              "name": "group_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -537,6 +537,19 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "description": "Filter invitations for the group",
+              "enum": [
+                "sender",
+                "receiver",
+                "admin"
+              ],
+              "name": "filter",
+              "paramType": "query",
+              "required": false,
+              "type": "com.mendeley.groups.resources.InvitationFilter"
+            },
+            {
+              "allowMultiple": false,
               "name": "group_id",
               "paramType": "path",
               "required": true,
@@ -549,19 +562,6 @@
               "paramType": "query",
               "required": false,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Filter invitations for the group",
-              "enum": [
-                "sender",
-                "receiver",
-                "admin"
-              ],
-              "name": "filter",
-              "paramType": "query",
-              "required": false,
-              "type": "com.mendeley.groups.resources.InvitationFilter"
             },
             {
               "allowMultiple": false,
@@ -608,17 +608,17 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "name": "group_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "name": "body",
               "paramType": "body",
               "required": false,
               "type": "GroupInvitation"
+            },
+            {
+              "allowMultiple": false,
+              "name": "group_id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
             }
           ],
           "produces": [
@@ -805,6 +805,16 @@
             },
             {
               "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Filters members for the given profile id. If a role query param is specified, this param is ignored",
               "name": "profile_id",
               "paramType": "query",
@@ -815,16 +825,6 @@
               "allowMultiple": true,
               "description": "Filters members by the given list of roles (e.g. role=owner&role=normal).",
               "name": "role",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
-              "maximum": "500",
-              "minimum": "1",
-              "name": "limit",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -994,6 +994,13 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "UserRole"
+            },
+            {
+              "allowMultiple": false,
               "name": "group_id",
               "paramType": "path",
               "required": true,
@@ -1005,13 +1012,6 @@
               "paramType": "path",
               "required": true,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "UserRole"
             }
           ],
           "produces": [
@@ -1050,6 +1050,13 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "GroupMessage"
+            },
+            {
+              "allowMultiple": false,
               "name": "group_id",
               "paramType": "path",
               "required": true,
@@ -1061,13 +1068,6 @@
               "paramType": "path",
               "required": true,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "GroupMessage"
             }
           ],
           "produces": [
@@ -1114,6 +1114,13 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "GroupMessage"
+            },
+            {
+              "allowMultiple": false,
               "name": "group_id",
               "paramType": "path",
               "required": true,
@@ -1125,13 +1132,6 @@
               "paramType": "path",
               "required": true,
               "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "GroupMessage"
             }
           ],
           "produces": [

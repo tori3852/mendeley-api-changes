@@ -66,12 +66,12 @@
               "message": "Found institution"
             },
             {
-              "code": 413,
-              "message": "Tree too large.  i.e. Any parent with greater than 150 children"
-            },
-            {
               "code": 404,
               "message": "Institution not found"
+            },
+            {
+              "code": 413,
+              "message": "Tree too large.  i.e. Any parent with greater than 150 children"
             }
           ],
           "summary": "<b>V1</b> - Get partial institution tree with given institution as root.",
