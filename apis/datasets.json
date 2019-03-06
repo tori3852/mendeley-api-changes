@@ -1118,7 +1118,7 @@
           "authorizations": {},
           "method": "DELETE",
           "nickname": "deleteFolder",
-          "notes": "Attempting to delete a non-empty folder will return a 409: Conflict<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1148,10 +1148,6 @@
             {
               "code": 404,
               "message": "Dataset or folder not found."
-            },
-            {
-              "code": 409,
-              "message": "Folder not empty."
             }
           ],
           "summary": "<b>V1-BETA</b> - Delete a folder",
