@@ -74,6 +74,14 @@
             },
             {
               "allowMultiple": false,
+              "description": "Filter by Mendeley profile id",
+              "name": "profile_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "The field to sort on",
               "enum": [
                 "publish_date",
