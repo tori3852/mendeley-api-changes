@@ -1702,6 +1702,10 @@
           },
           "type": "array"
         },
+        "size": {
+          "format": "int64",
+          "type": "integer"
+        },
         "version": {
           "format": "int64",
           "type": "integer"
@@ -1870,6 +1874,10 @@
         },
         "metrics": {
           "$ref": "FileMetrics"
+        },
+        "size": {
+          "format": "int64",
+          "type": "integer"
         }
       }
     },
@@ -2192,6 +2200,10 @@
             "$ref": "RelatedLink"
           },
           "type": "array"
+        },
+        "size": {
+          "format": "int64",
+          "type": "integer"
         },
         "version": {
           "format": "int64",
