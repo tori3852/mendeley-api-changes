@@ -4,6 +4,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "consumes": [
             "application/vnd.mendeley-document.1+json"
           ],
@@ -36,6 +37,7 @@
           "type": "UserDocument"
         },
         {
+          "authorizations": {},
           "items": {
             "$ref": "UserDocument"
           },
@@ -159,6 +161,21 @@
               "paramType": "query",
               "required": false,
               "type": "array"
+            },
+            {
+              "allowMultiple": false,
+              "description": "View",
+              "enum": [
+                "bib",
+                "patent",
+                "client",
+                "tags",
+                "all"
+              ],
+              "name": "view",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
             }
           ],
           "produces": [
@@ -187,6 +204,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "items": {
             "$ref": "File"
           },
@@ -255,6 +273,7 @@
           "uniqueItems": true
         },
         {
+          "authorizations": {},
           "consumes": [
             "*/*"
           ],
@@ -328,6 +347,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "consumes": [
             "application/vnd.mendeley-document-file-reinstatement+json"
           ],
@@ -378,6 +398,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "method": "DELETE",
           "nickname": "delete",
           "notes": "",
@@ -424,6 +445,7 @@
           "type": "void"
         },
         {
+          "authorizations": {},
           "method": "GET",
           "nickname": "downloadFile",
           "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
@@ -485,6 +507,7 @@
           "type": "void"
         },
         {
+          "authorizations": {},
           "consumes": [
             "application/vnd.mendeley-document-file-patch+json"
           ],
@@ -542,6 +565,7 @@
           "type": "void"
         },
         {
+          "authorizations": {},
           "method": "PUT",
           "nickname": "reinstate",
           "notes": "<br /><h2>Warning</h2> This endpoint is in <b>ALPHA</b> stage, which means that it is very likely change in the future; Alpha endpoints are not accessible in Production.<br />",
@@ -589,6 +613,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "method": "DELETE",
           "nickname": "deleteDocument",
           "notes": "",
@@ -619,6 +644,7 @@
           "type": "void"
         },
         {
+          "authorizations": {},
           "method": "GET",
           "nickname": "getDocument",
           "notes": "",
@@ -679,6 +705,7 @@
           "type": "UserDocument"
         },
         {
+          "authorizations": {},
           "consumes": [
             "application/vnd.mendeley-document.1+json"
           ],
@@ -756,6 +783,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "method": "POST",
           "nickname": "moveDocumentToTrash",
           "notes": "",

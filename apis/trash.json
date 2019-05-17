@@ -4,6 +4,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "items": {
             "$ref": "UserDocument"
           },
@@ -36,8 +37,42 @@
             },
             {
               "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 500.",
+              "maximum": "500",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
               "description": "Returns only documents modified since this timestamp.  Should be supplied in ISO 8601 format",
               "name": "modified_since",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The sort order",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "name": "order",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The field to sort on",
+              "enum": [
+                "document_id",
+                "deleted_at"
+              ],
+              "name": "sort",
               "paramType": "query",
               "required": false,
               "type": "string"
@@ -74,6 +109,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "method": "DELETE",
           "nickname": "deleteDocument",
           "notes": "",
@@ -104,6 +140,7 @@
           "type": "void"
         },
         {
+          "authorizations": {},
           "method": "GET",
           "nickname": "getDocument",
           "notes": "",
@@ -169,6 +206,7 @@
     {
       "operations": [
         {
+          "authorizations": {},
           "method": "POST",
           "nickname": "restoreDocument",
           "notes": "",
