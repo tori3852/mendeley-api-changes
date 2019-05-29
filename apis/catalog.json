@@ -353,7 +353,8 @@
             "encyclopedia_article",
             "case",
             "film",
-            "bill"
+            "bill",
+            "dataset"
           ]
         },
         "volume": {
