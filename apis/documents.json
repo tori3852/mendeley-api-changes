@@ -279,7 +279,7 @@
           ],
           "method": "POST",
           "nickname": "uploadOrLinkFile",
-          "notes": "This endpoint supports both: directly uploading a file and linking a file content ticket to a file. Owing to a Swagger limitation it is not possible to test the linking functionality from this page.Please see details on how to test linking <a href=\"http://dev.mendeley.com/methods/?shell#linking-a-file-content-to-a-file\">here</a><br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "This endpoint supports both: directly uploading a file and linking a file content ticket to a file. Owing to a Swagger limitation it is not possible to test the linking functionality from this page.Please see details on how to test linking <a href=\"http://dev.mendeley.com/methods/?shell#linking-a-file-content-to-a-file\">here</a>",
           "parameters": [
             {
               "allowMultiple": false,
@@ -338,7 +338,7 @@
               "message": "File is too large"
             }
           ],
-          "summary": "<b>V1-BETA</b> - Upload a file to a user document; Linking file content ticket to a file",
+          "summary": "<b>V1</b> - Upload a file to a user document; Linking file content ticket to a file",
           "type": "File"
         }
       ],
@@ -448,7 +448,7 @@
           "authorizations": {},
           "method": "GET",
           "nickname": "downloadFile",
-          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "",
           "parameters": [
             {
               "allowMultiple": false,
@@ -503,65 +503,7 @@
               "message": "Blocked for legal reasons"
             }
           ],
-          "summary": "<b>V1-BETA</b> - Download a document file",
-          "type": "void"
-        },
-        {
-          "authorizations": {},
-          "consumes": [
-            "application/vnd.mendeley-document-file-patch+json"
-          ],
-          "method": "PATCH",
-          "nickname": "modify",
-          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
-          "parameters": [
-            {
-              "allowMultiple": false,
-              "description": "File patch",
-              "name": "body",
-              "paramType": "body",
-              "required": true,
-              "type": "FilePatch"
-            },
-            {
-              "allowMultiple": false,
-              "description": "Document ID",
-              "name": "document_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
-              "description": "File ID",
-              "name": "file_id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "produces": [
-            " "
-          ],
-          "responseMessages": [
-            {
-              "code": 204,
-              "message": "Success, the file has been modified"
-            },
-            {
-              "code": 400,
-              "message": "Bad request"
-            },
-            {
-              "code": 403,
-              "message": "Forbidden"
-            },
-            {
-              "code": 404,
-              "message": "File not found"
-            }
-          ],
-          "summary": "<b>V1-BETA</b> - Modify a file's metadata",
+          "summary": "<b>V1</b> - Download a document file",
           "type": "void"
         },
         {
@@ -847,14 +789,6 @@
         "size": {
           "format": "int32",
           "type": "integer"
-        }
-      }
-    },
-    "FilePatch": {
-      "id": "FilePatch",
-      "properties": {
-        "file_name": {
-          "type": "string"
         }
       }
     },
