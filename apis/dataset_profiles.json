@@ -56,7 +56,7 @@
           "authorizations": {},
           "method": "GET",
           "nickname": "getAssetBySubmissionId",
-          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "",
           "parameters": [
             {
               "allowMultiple": false,
@@ -85,7 +85,7 @@
               "responseModel": "Error"
             }
           ],
-          "summary": "<b>V1-BETA</b> - Retrieve a profile by submission id",
+          "summary": "<b>V1</b> - Retrieve a profile by submission id",
           "type": "Profile"
         }
       ],
