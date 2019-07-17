@@ -925,7 +925,7 @@
           ],
           "method": "POST",
           "nickname": "addFolderStructure",
-          "notes": "Use the 'parent_id' when adding a folder structure to an existing folder<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "Use the 'parent_id' when adding a folder structure to an existing folder",
           "parameters": [
             {
               "allowMultiple": false,
@@ -973,7 +973,7 @@
               "message": "Folder already exists"
             }
           ],
-          "summary": "<b>V1-BETA</b> - Add folder structure",
+          "summary": "<b>V1</b> - Add folder structure",
           "type": "void"
         },
         {
@@ -983,7 +983,7 @@
           ],
           "method": "POST",
           "nickname": "createFolder",
-          "notes": "Only 'name', 'description' and parent are used.<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "Only 'name', 'description' and parent are used.",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1023,7 +1023,7 @@
               "message": "Folder already exists"
             }
           ],
-          "summary": "<b>V1-BETA</b> - Create a folder",
+          "summary": "<b>V1</b> - Create a folder",
           "type": "Folder"
         },
         {
@@ -1033,7 +1033,7 @@
           },
           "method": "GET",
           "nickname": "getFolders",
-          "notes": "Filtering by folder parent:\n  * if not specified - return all folders from all levels\n  * parent ID specified - return all folders that have this as a parent\n  * special value for parent ID to ask to return root folders - \"null\"\n\nResults will be limited if a limit is provided but you won't be able to get next page<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "Filtering by folder parent:\n  * if not specified - return all folders from all levels\n  * parent ID specified - return all folders that have this as a parent\n  * special value for parent ID to ask to return root folders - \"null\"\n\nResults will be limited if a limit is provided but you won't be able to get next page",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1072,7 +1072,7 @@
               "message": "Dataset not found."
             }
           ],
-          "summary": "<b>V1-BETA</b> - Get draft dataset's folders",
+          "summary": "<b>V1</b> - Get draft dataset's folders",
           "type": "array"
         },
         {
@@ -1082,7 +1082,7 @@
           ],
           "method": "PATCH",
           "nickname": "moveMultipleFolders",
-          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1114,7 +1114,7 @@
               "message": "Dataset or folder not found."
             }
           ],
-          "summary": "<b>V1-BETA</b> - Move list of folders to a specific folder",
+          "summary": "<b>V1</b> - Move list of folders to a specific folder",
           "type": "Response"
         }
       ],
@@ -1126,7 +1126,7 @@
           "authorizations": {},
           "method": "DELETE",
           "nickname": "deleteFolder",
-          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1158,14 +1158,14 @@
               "message": "Dataset or folder not found."
             }
           ],
-          "summary": "<b>V1-BETA</b> - Delete a folder",
+          "summary": "<b>V1</b> - Delete a folder",
           "type": "void"
         },
         {
           "authorizations": {},
           "method": "GET",
           "nickname": "getFolder",
-          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1204,7 +1204,7 @@
               "message": "Dataset or folder not found."
             }
           ],
-          "summary": "<b>V1-BETA</b> - Get draft dataset's folder",
+          "summary": "<b>V1</b> - Get draft dataset's folder",
           "type": "Folder"
         },
         {
@@ -1214,7 +1214,7 @@
           ],
           "method": "PATCH",
           "nickname": "updateFolder",
-          "notes": "Update folder metadata (only 'name', 'description' and parent are used), or move it to a new parent.<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "Update folder metadata (only 'name', 'description' and parent are used), or move it to a new parent.",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1258,7 +1258,7 @@
               "message": "Dataset, folder or parent not found."
             }
           ],
-          "summary": "<b>V1-BETA</b> - Update a folder",
+          "summary": "<b>V1</b> - Update a folder",
           "type": "Folder"
         }
       ],
@@ -1273,7 +1273,7 @@
           },
           "method": "GET",
           "nickname": "getFolders",
-          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1318,7 +1318,7 @@
               "message": "Dataset under embargo."
             }
           ],
-          "summary": "<b>V1-BETA</b> - Get published dataset's folders",
+          "summary": "<b>V1</b> - Get published dataset's folders",
           "type": "array"
         }
       ],
@@ -1330,7 +1330,7 @@
           "authorizations": {},
           "method": "GET",
           "nickname": "getFolder",
-          "notes": "<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "notes": "",
           "parameters": [
             {
               "allowMultiple": false,
@@ -1375,7 +1375,7 @@
               "message": "Dataset under embargo."
             }
           ],
-          "summary": "<b>V1-BETA</b> - Get published dataset's folder",
+          "summary": "<b>V1</b> - Get published dataset's folder",
           "type": "Folder"
         }
       ],
@@ -1866,7 +1866,6 @@
           "type": "string"
         },
         "folder_id": {
-          "description": "<b>BETA</b>",
           "type": "string"
         },
         "id": {
@@ -2152,6 +2151,9 @@
             "$ref": "PublicContributorDetails"
           },
           "type": "array"
+        },
+        "customer_id": {
+          "type": "string"
         },
         "data_licence": {
           "$ref": "LicenceInfo"
