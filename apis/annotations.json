@@ -38,13 +38,6 @@
           "parameters": [
             {
               "allowMultiple": false,
-              "name": "body",
-              "paramType": "body",
-              "required": false,
-              "type": "PagingParams"
-            },
-            {
-              "allowMultiple": false,
               "description": "Returns only annotations deleted since this timestamp.  Should be supplied in ISO 8601 format",
               "name": "deleted_since",
               "paramType": "query",
@@ -74,6 +67,16 @@
               "paramType": "query",
               "required": false,
               "type": "boolean"
+            },
+            {
+              "allowMultiple": false,
+              "description": "The maximum number of items on the page. If not supplied, the default is 20. The largest allowable value is 200.",
+              "maximum": "200",
+              "minimum": "1",
+              "name": "limit",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
             },
             {
               "allowMultiple": false,
@@ -305,33 +308,6 @@
         "r": {
           "format": "int32",
           "type": "integer"
-        }
-      }
-    },
-    "PagingParams": {
-      "id": "PagingParams",
-      "properties": {
-        "countRequired": {
-          "type": "string"
-        },
-        "limit": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "marker": {
-          "type": "string"
-        },
-        "order": {
-          "type": "string"
-        },
-        "page": {
-          "type": "string"
-        },
-        "reverse": {
-          "type": "string"
-        },
-        "sort": {
-          "type": "string"
         }
       }
     },
