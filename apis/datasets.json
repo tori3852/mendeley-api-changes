@@ -1683,6 +1683,9 @@
         "method": {
           "type": "string"
         },
+        "moderation_status": {
+          "$ref": "ModerationStatus"
+        },
         "name": {
           "type": "string"
         },
@@ -2079,6 +2082,17 @@
       "id": "LinkLicenceRequest",
       "properties": {
         "id": {
+          "type": "string"
+        }
+      }
+    },
+    "ModerationStatus": {
+      "id": "ModerationStatus",
+      "properties": {
+        "moderation_state": {
+          "type": "string"
+        },
+        "rejection_reason": {
           "type": "string"
         }
       }
