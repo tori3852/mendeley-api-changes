@@ -252,6 +252,12 @@
         "file_attached": {
           "type": "boolean"
         },
+        "full_text": {
+          "items": {
+            "$ref": "FullText"
+          },
+          "type": "array"
+        },
         "group_count": {
           "format": "int32",
           "type": "integer"
@@ -374,6 +380,23 @@
         "title",
         "type"
       ]
+    },
+    "FullText": {
+      "id": "FullText",
+      "properties": {
+        "link": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "com.mendeley.documents.api.FullTextType",
+          "enum": [
+            "GOLD",
+            "GREEN",
+            "UNKNOWN",
+            "SUBSCRIPTION"
+          ]
+        }
+      }
     },
     "Person": {
       "id": "Person",
