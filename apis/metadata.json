@@ -88,6 +88,92 @@
           ],
           "summary": "<b>V1</b> - Get document metadata",
           "type": "DocumentLookupResponse"
+        },
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getPlainDocumentByMetadata",
+          "notes": "You should specify a filehash OR at least 1 identifier OR a title for a successful match.Looking up ONLY by authors OR year OR source would not return a result.If matching on 'title' then providing authors OR year OR source would improve the lookup.<br /><h2>Warning</h2> This endpoint is in <b>BETA</b> stage, which means that it may change in the future.<br />In order to make a call to this endpoint (except from this page) one needs to generate and include an ephemeral development access token as a header within each request.<br />For more details go to <a href='https://development-tokens.mendeley.com'>https://development-tokens.mendeley.com</a>",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "arxiv",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "authors",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "doi",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "filehash",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "isbn",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "pmid",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "source",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "title",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "name": "year",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-plain-document.1+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Get plain document by id metadata"
+            },
+            {
+              "code": 404,
+              "message": "Document not found"
+            }
+          ],
+          "summary": "<b>V1-BETA</b> - Get document metadata",
+          "type": "PlainDocument"
         }
       ],
       "path": "/metadata"
@@ -107,6 +193,142 @@
           "type": "integer"
         }
       }
+    },
+    "Person": {
+      "id": "Person",
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "scopus_author_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "last_name"
+      ]
+    },
+    "PlainDocument": {
+      "id": "PlainDocument",
+      "properties": {
+        "abstract": {
+          "type": "string"
+        },
+        "authors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "chapter": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "day": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "department": {
+          "type": "string"
+        },
+        "edition": {
+          "type": "string"
+        },
+        "editors": {
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
+        },
+        "identifiers": {
+          "$ref": "Map[com.mendeley.documents.api.IdentifierType,java.lang.String]"
+        },
+        "institution": {
+          "type": "string"
+        },
+        "issue": {
+          "type": "string"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "month": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pages": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "series": {
+          "type": "string"
+        },
+        "series_number": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "com.mendeley.documents.api.DocumentType",
+          "enum": [
+            "journal",
+            "book",
+            "generic",
+            "book_section",
+            "conference_proceedings",
+            "working_paper",
+            "report",
+            "web_page",
+            "thesis",
+            "magazine_article",
+            "statute",
+            "patent",
+            "newspaper_article",
+            "computer_program",
+            "hearing",
+            "television_broadcast",
+            "encyclopedia_article",
+            "case",
+            "film",
+            "bill"
+          ]
+        },
+        "volume": {
+          "type": "string"
+        },
+        "websites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "year": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title",
+        "type"
+      ]
     }
   },
   "produces": null,
