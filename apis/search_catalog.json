@@ -30,6 +30,13 @@
             },
             {
               "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "AccessToken"
+            },
+            {
+              "allowMultiple": false,
               "description": "The maximum number of items on the page. If not supplied, the default is 10. The largest allowable value is 100.",
               "maximum": "100",
               "minimum": "1",
@@ -126,6 +133,30 @@
   "basePath": "https://api.mendeley.com",
   "consumes": null,
   "models": {
+    "AccessToken": {
+      "id": "AccessToken",
+      "properties": {
+        "aeAuthToken": {
+          "type": "string"
+        },
+        "expires": {
+          "type": "string"
+        },
+        "oauthUser": {
+          "$ref": "OauthUser"
+        },
+        "userId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "userUuid": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
     "CatalogueDocument": {
       "id": "CatalogueDocument",
       "properties": {
@@ -312,6 +343,38 @@
             "UNKNOWN",
             "SUBSCRIPTION"
           ]
+        }
+      }
+    },
+    "OauthUser": {
+      "id": "OauthUser",
+      "properties": {
+        "allowedOrigin": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "entitlements": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "scopes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "userId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "userUuid": {
+          "type": "string"
         }
       }
     },
