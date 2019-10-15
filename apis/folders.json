@@ -184,6 +184,7 @@
           "parameters": [
             {
               "allowMultiple": false,
+              "description": "Set parent_id to 'root' to turn a sub folder into a top level folder",
               "name": "body",
               "paramType": "body",
               "required": false,
