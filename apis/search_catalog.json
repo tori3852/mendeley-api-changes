@@ -206,6 +206,9 @@
           },
           "type": "array"
         },
+        "get_ftr_enabled": {
+          "type": "boolean"
+        },
         "group_count": {
           "format": "int32",
           "type": "integer"
