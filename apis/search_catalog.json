@@ -251,6 +251,9 @@
         "pages": {
           "type": "string"
         },
+        "pdf": {
+          "type": "string"
+        },
         "publisher": {
           "type": "string"
         },
