@@ -42,13 +42,13 @@
           "type": "void"
         }
       ],
-      "path": "/link-resolver/v1"
+      "path": "/entitlements/v1/link-resolver"
     }
   ],
   "basePath": "https://api.mendeley.com",
   "consumes": null,
   "models": null,
   "produces": null,
-  "resourcePath": "/link-resolver/v1",
+  "resourcePath": "/entitlements/v1/link-resolver",
   "swaggerVersion": "1.2"
 }
