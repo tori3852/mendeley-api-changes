@@ -181,6 +181,10 @@
         "created": {
           "type": "string"
         },
+        "crossref_member_id": {
+          "format": "int32",
+          "type": "integer"
+        },
         "day": {
           "format": "int32",
           "type": "integer"

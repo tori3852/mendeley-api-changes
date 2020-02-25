@@ -1,0 +1,48 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "Discipline"
+          },
+          "method": "GET",
+          "nickname": "get",
+          "notes": "",
+          "parameters": [],
+          "produces": [
+            " "
+          ],
+          "summary": "<b>V1</b> - Get available disciplines. <b>Deprecated. Use /subject_areas instead</b>",
+          "type": "array"
+        }
+      ],
+      "path": "/disciplines"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "Discipline": {
+      "id": "Discipline",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "subdisciplines": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/vnd.mendeley-discipline.1+json"
+  ],
+  "resourcePath": "/disciplines",
+  "swaggerVersion": "1.2"
+}
