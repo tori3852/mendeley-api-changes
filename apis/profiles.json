@@ -189,7 +189,9 @@
     }
   ],
   "basePath": "https://api.mendeley.com",
-  "consumes": null,
+  "consumes": [
+    "application/vnd.mendeley-ae-sync.1+json"
+  ],
   "models": {
     "AlternativeName": {
       "id": "AlternativeName",
@@ -486,6 +488,9 @@
           "$ref": "Institution",
           "description": "<b>BETA</b>"
         },
+        "is_editor": {
+          "type": "boolean"
+        },
         "last_name": {
           "type": "string"
         },
@@ -502,7 +507,13 @@
           "description": "<b>BETA</b>",
           "type": "string"
         },
+        "middle_initials": {
+          "type": "string"
+        },
         "orcid_id": {
+          "type": "string"
+        },
+        "personal_website": {
           "type": "string"
         },
         "photo": {
@@ -590,6 +601,9 @@
         "institution_id": {
           "type": "string"
         },
+        "is_editor": {
+          "type": "boolean"
+        },
         "last_modified": {
           "type": "string"
         },
@@ -602,10 +616,16 @@
         "marketing": {
           "type": "boolean"
         },
+        "middle_initials": {
+          "type": "string"
+        },
         "old_password": {
           "type": "string"
         },
         "password": {
+          "type": "string"
+        },
+        "personal_website": {
           "type": "string"
         },
         "research_interests_list": {
@@ -637,7 +657,9 @@
       }
     }
   },
-  "produces": null,
+  "produces": [
+    "application/json"
+  ],
   "resourcePath": "/profiles",
   "swaggerVersion": "1.2"
 }
