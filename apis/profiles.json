@@ -189,9 +189,7 @@
     }
   ],
   "basePath": "https://api.mendeley.com",
-  "consumes": [
-    "application/vnd.mendeley-ae-sync.1+json"
-  ],
+  "consumes": null,
   "models": {
     "AlternativeName": {
       "id": "AlternativeName",
@@ -657,9 +655,7 @@
       }
     }
   },
-  "produces": [
-    "application/json"
-  ],
+  "produces": null,
   "resourcePath": "/profiles",
   "swaggerVersion": "1.2"
 }
