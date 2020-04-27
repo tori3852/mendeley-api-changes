@@ -1445,6 +1445,12 @@
           },
           "type": "array"
         },
+        "confidential": {
+          "type": "boolean"
+        },
+        "confidentiality_policy_id": {
+          "type": "string"
+        },
         "contributors": {
           "items": {
             "$ref": "Contributor"
