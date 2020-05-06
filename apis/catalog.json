@@ -387,8 +387,8 @@
         }
       },
       "required": [
-        "title",
-        "type"
+        "type",
+        "title"
       ]
     },
     "FullText": {
