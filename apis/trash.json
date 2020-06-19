@@ -492,8 +492,8 @@
         }
       },
       "required": [
-        "title",
-        "type"
+        "type",
+        "title"
       ]
     }
   },

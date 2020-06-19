@@ -1011,8 +1011,8 @@
         }
       },
       "required": [
-        "title",
-        "type"
+        "type",
+        "title"
       ]
     },
     "Person": {
@@ -1264,8 +1264,8 @@
         }
       },
       "required": [
-        "title",
-        "type"
+        "type",
+        "title"
       ]
     },
     "UserDocumentAmendment": {
