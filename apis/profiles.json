@@ -216,9 +216,6 @@
     "Editorship": {
       "id": "Editorship",
       "properties": {
-        "cover_image_url": {
-          "type": "string"
-        },
         "created": {
           "type": "string"
         },
@@ -228,13 +225,7 @@
         "id": {
           "type": "string"
         },
-        "issn": {
-          "type": "string"
-        },
         "journal": {
-          "type": "string"
-        },
-        "journal_url": {
           "type": "string"
         },
         "position": {
@@ -603,9 +594,6 @@
           "type": "string"
         },
         "first_name": {
-          "type": "string"
-        },
-        "folder": {
           "type": "string"
         },
         "institution_id": {
