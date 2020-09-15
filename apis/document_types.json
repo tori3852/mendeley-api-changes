@@ -1,0 +1,43 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "DocumentTypeDefinition"
+          },
+          "method": "GET",
+          "nickname": "getAllDocumentTypes",
+          "notes": "",
+          "parameters": [],
+          "produces": [
+            "application/vnd.mendeley-document-type.1+json"
+          ],
+          "summary": "<b>V1</b> - Get available document types",
+          "type": "array"
+        }
+      ],
+      "path": "/document_types"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "DocumentTypeDefinition": {
+      "id": "DocumentTypeDefinition",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/document_types",
+  "swaggerVersion": "1.2"
+}
