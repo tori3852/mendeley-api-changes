@@ -152,46 +152,6 @@
         {
           "authorizations": {},
           "method": "GET",
-          "nickname": "getProfileIdentifiers",
-          "notes": "",
-          "parameters": [
-            {
-              "allowMultiple": false,
-              "description": "Profile ID",
-              "name": "id",
-              "paramType": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "produces": [
-            "application/vnd.mendeley-profiles-identifiers.1+json"
-          ],
-          "responseMessages": [
-            {
-              "code": 200,
-              "message": "Profile identifiers found"
-            },
-            {
-              "code": 400,
-              "message": "Invalid request"
-            },
-            {
-              "code": 404,
-              "message": "Profile not found"
-            }
-          ],
-          "summary": "<b>V2</b> - Get profile identifiers",
-          "type": "ProfileIdentifiers"
-        }
-      ],
-      "path": "/profiles/v2/{id}/identifiers"
-    },
-    {
-      "operations": [
-        {
-          "authorizations": {},
-          "method": "GET",
           "nickname": "get",
           "notes": "",
           "parameters": [
@@ -281,13 +241,6 @@
         },
         "position": {
           "type": "string"
-        },
-        "source": {
-          "$ref": "com.mendeley.profiles.api.Source",
-          "enum": [
-            "erms",
-            "unknown"
-          ]
         },
         "start_date": {
           "type": "string"
@@ -486,7 +439,7 @@
           "type": "string"
         },
         "biography": {
-          "description": "<b>BETA</b>",
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "created": {
@@ -507,12 +460,14 @@
           "type": "string"
         },
         "editorships": {
+          "description": "<b>DEPRECATED</b>",
           "items": {
             "$ref": "Editorship"
           },
           "type": "array"
         },
         "education": {
+          "description": "<b>DEPRECATED</b>",
           "items": {
             "$ref": "Education"
           },
@@ -522,6 +477,7 @@
           "type": "string"
         },
         "employment": {
+          "description": "<b>DEPRECATED</b>",
           "items": {
             "$ref": "Employment"
           },
@@ -531,6 +487,7 @@
           "type": "string"
         },
         "folder": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "id": {
@@ -545,16 +502,19 @@
           "description": "<b>BETA</b>"
         },
         "is_editor": {
+          "description": "<b>DEPRECATED</b>",
           "type": "boolean"
         },
         "last_name": {
           "type": "string"
         },
         "link": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "location": {
-          "$ref": "Location"
+          "$ref": "Location",
+          "description": "<b>DEPRECATED</b>"
         },
         "marketing": {
           "type": "boolean"
@@ -564,12 +524,15 @@
           "type": "string"
         },
         "middle_initials": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "orcid_id": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "personal_website": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "photo": {
@@ -625,6 +588,7 @@
           "type": "boolean"
         },
         "visibility": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "web_user_id": {
@@ -712,19 +676,6 @@
             "staff",
             "admin"
           ]
-        }
-      }
-    },
-    "ProfileIdentifiers": {
-      "id": "ProfileIdentifiers",
-      "properties": {
-        "legacy_id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "web_user_id": {
-          "format": "int64",
-          "type": "integer"
         }
       }
     }

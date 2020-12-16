@@ -8,6 +8,7 @@
           "consumes": [
             "application/vnd.mendeley-follow-request.1+json"
           ],
+          "deprecated": "true",
           "method": "POST",
           "nickname": "createFollow",
           "notes": "",
@@ -37,11 +38,12 @@
               "message": "Invalid Request"
             }
           ],
-          "summary": "<b>V1</b> - Start following another profile",
+          "summary": "<b>V1</b> - Start following another profile (Deprecated)",
           "type": "Follow"
         },
         {
           "authorizations": {},
+          "deprecated": "true",
           "items": {
             "$ref": "Follow"
           },
@@ -106,7 +108,7 @@
               "message": "Bad Request"
             }
           ],
-          "summary": "<b>V1</b> - Get follower information",
+          "summary": "<b>V1</b> - Get follower information (Deprecated)",
           "type": "array"
         }
       ],
@@ -119,6 +121,7 @@
           "consumes": [
             "application/vnd.mendeley-follow-acceptance.1+json"
           ],
+          "deprecated": "true",
           "method": "PATCH",
           "nickname": "acceptFollowRequest",
           "notes": "",
@@ -155,11 +158,12 @@
               "message": "Follow acceptance invalid"
             }
           ],
-          "summary": "<b>V1</b> - Accept a pending follow request",
+          "summary": "<b>V1</b> - Accept a pending follow request (Deprecated)",
           "type": "Follow"
         },
         {
           "authorizations": {},
+          "deprecated": "true",
           "method": "DELETE",
           "nickname": "removeFollowRelationship",
           "notes": "",
@@ -194,7 +198,7 @@
               "message": "Follow relationship or request not found"
             }
           ],
-          "summary": "<b>V1</b> - Stop following a profile, cancel a follow request, or reject a follow request",
+          "summary": "<b>V1</b> - Stop following a profile, cancel a follow request, or reject a follow request (Deprecated)",
           "type": "void"
         }
       ],
