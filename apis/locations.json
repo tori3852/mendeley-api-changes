@@ -5,6 +5,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "items": {
             "$ref": "Location"
           },
@@ -44,7 +45,7 @@
               "message": "Prefix missing or too short"
             }
           ],
-          "summary": "<b>V1</b> - Suggest locations for given prefix",
+          "summary": "<b>V1</b> - Suggest locations for given prefix (Deprecated)",
           "type": "array"
         }
       ],
@@ -54,6 +55,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "method": "GET",
           "nickname": "getLocation",
           "notes": "",
@@ -80,7 +82,7 @@
               "message": "Location not found"
             }
           ],
-          "summary": "<b>V1</b> - Get location by ID",
+          "summary": "<b>V1</b> - Get location by ID (Deprecated)",
           "type": "Location"
         }
       ],
