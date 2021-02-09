@@ -5,6 +5,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "items": {
             "$ref": "Institution"
           },
@@ -80,7 +81,7 @@
               "message": "Hint missing"
             }
           ],
-          "summary": "<b>V1</b> - Get institutions matching given hint",
+          "summary": "<b>V1</b> - Get institutions matching given hint (Deprecated)",
           "type": "array"
         }
       ],
@@ -90,6 +91,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "method": "GET",
           "nickname": "getInstitution",
           "notes": "",
@@ -120,7 +122,7 @@
               "message": "Institution not found"
             }
           ],
-          "summary": "<b>V1</b> - Get institution matching given institution uuid",
+          "summary": "<b>V1</b> - Get institution matching given institution uuid (Deprecated)",
           "type": "Institution"
         }
       ],
