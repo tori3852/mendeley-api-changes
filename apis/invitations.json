@@ -8,6 +8,7 @@
           "consumes": [
             "application/vnd.mendeley-new-invitation-to-join-mendeley+json"
           ],
+          "deprecated": "true",
           "method": "POST",
           "nickname": "inviteToMendeley",
           "notes": "",
@@ -45,7 +46,7 @@
               "message": "Invitation already exists"
             }
           ],
-          "summary": "<b>V1</b> - Creates an invitation",
+          "summary": "<b>V1</b> - Creates an invitation (Deprecated)",
           "type": "Invitation"
         }
       ],

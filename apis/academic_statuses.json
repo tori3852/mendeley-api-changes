@@ -5,6 +5,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "items": {
             "$ref": "AcademicStatus"
           },
@@ -15,7 +16,7 @@
           "produces": [
             "application/vnd.mendeley-academic-status.1+json"
           ],
-          "summary": "<b>V1</b> - Get available academic statuses. <b>Deprecated. Use /user_roles instead</b>",
+          "summary": "<b>V1</b> - Get available academic statuses. <b>Deprecated. Use /user_roles instead</b> (Deprecated)",
           "type": "array"
         }
       ],

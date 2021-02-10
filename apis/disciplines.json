@@ -5,6 +5,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "items": {
             "$ref": "Discipline"
           },
@@ -15,7 +16,7 @@
           "produces": [
             " "
           ],
-          "summary": "<b>V1</b> - Get available disciplines. <b>Deprecated. Use /subject_areas instead</b>",
+          "summary": "<b>V1</b> - Get available disciplines. <b>Deprecated. Use /subject_areas instead</b> (Deprecated)",
           "type": "array"
         }
       ],

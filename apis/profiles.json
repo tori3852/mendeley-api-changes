@@ -5,6 +5,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "items": {
             "$ref": "Profile"
           },
@@ -58,7 +59,7 @@
               "message": "Invalid request"
             }
           ],
-          "summary": "<b>V1</b> - Get profiles",
+          "summary": "<b>V1</b> - Get profiles (Deprecated)",
           "type": "array"
         }
       ],
@@ -68,6 +69,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "method": "GET",
           "nickname": "getProfileForLoggedInUser",
           "notes": "",
@@ -89,7 +91,7 @@
               "message": "Profile not found"
             }
           ],
-          "summary": "<b>V1</b> - Get my profile",
+          "summary": "<b>V1</b> - Get my profile (Deprecated)",
           "type": "Profile"
         },
         {
@@ -98,6 +100,7 @@
             "application/json",
             "application/vnd.mendeley-profile-amendment.1+json"
           ],
+          "deprecated": "true",
           "method": "PATCH",
           "nickname": "updateMyProfile",
           "notes": "",
@@ -141,7 +144,7 @@
               "message": "Profile amendment is invalid"
             }
           ],
-          "summary": "<b>V1</b> -  Update my profile with the new values specified in the ProfileAmendment. <b>N.B.</b> Even though you can specify a new password (and old password) in ProfileAmendment, these fields are currently ignored.",
+          "summary": "<b>V1</b> -  Update my profile with the new values specified in the ProfileAmendment. <b>N.B.</b> Even though you can specify a new password (and old password) in ProfileAmendment, these fields are currently ignored. (Deprecated)",
           "type": "Profile"
         }
       ],
@@ -151,6 +154,7 @@
       "operations": [
         {
           "authorizations": {},
+          "deprecated": "true",
           "method": "GET",
           "nickname": "get",
           "notes": "",
@@ -181,7 +185,7 @@
               "message": "Profile not found"
             }
           ],
-          "summary": "<b>V1</b> - Get a profile",
+          "summary": "<b>V1</b> - Get a profile (Deprecated)",
           "type": "Profile"
         }
       ],
@@ -448,7 +452,6 @@
           "description": "<b>DEPRECATED</b>"
         },
         "disciplines": {
-          "description": "<b>BETA</b>",
           "items": {
             "$ref": "Discipline"
           },
@@ -538,7 +541,6 @@
           "description": "<b>DEPRECATED</b>"
         },
         "photos": {
-          "description": "<b>BETA</b>",
           "items": {
             "$ref": "Image"
           },
@@ -548,6 +550,7 @@
           "type": "boolean"
         },
         "privacy_restricted_view": {
+          "description": "<b>DEPRECATED</b>",
           "type": "boolean"
         },
         "research_interests": {
@@ -568,7 +571,7 @@
           "type": "array"
         },
         "title": {
-          "description": "<b>BETA</b>",
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "user_type": {
@@ -602,6 +605,7 @@
           "type": "string"
         },
         "biography": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "disciplines": {
@@ -617,27 +621,29 @@
           "type": "string"
         },
         "folder": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "institution_id": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "is_editor": {
+          "description": "<b>DEPRECATED</b>",
           "type": "boolean"
-        },
-        "last_modified": {
-          "type": "string"
         },
         "last_name": {
           "type": "string"
         },
         "location_id": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "marketing": {
           "type": "boolean"
         },
         "middle_initials": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "old_password": {
@@ -647,9 +653,11 @@
           "type": "string"
         },
         "personal_website": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "research_interests_list": {
+          "description": "<b>DEPRECATED</b>",
           "items": {
             "type": "string"
           },
@@ -662,6 +670,7 @@
           "type": "string"
         },
         "title": {
+          "description": "<b>DEPRECATED</b>",
           "type": "string"
         },
         "user_type": {
