@@ -31,14 +31,6 @@
             },
             {
               "allowMultiple": false,
-              "description": "Link",
-              "name": "link",
-              "paramType": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "allowMultiple": false,
               "description": "Scopus author id",
               "name": "scopus_author_id",
               "paramType": "query",
@@ -195,14 +187,6 @@
   "basePath": "https://api.mendeley.com",
   "consumes": null,
   "models": {
-    "AlternativeName": {
-      "id": "AlternativeName",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
     "Discipline": {
       "id": "Discipline",
       "properties": {
@@ -214,109 +198,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      }
-    },
-    "Editorship": {
-      "id": "Editorship",
-      "properties": {
-        "cover_image_url": {
-          "type": "string"
-        },
-        "created": {
-          "type": "string"
-        },
-        "end_date": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "issn": {
-          "type": "string"
-        },
-        "journal": {
-          "type": "string"
-        },
-        "journal_url": {
-          "type": "string"
-        },
-        "position": {
-          "type": "string"
-        },
-        "start_date": {
-          "type": "string"
-        }
-      }
-    },
-    "Education": {
-      "id": "Education",
-      "properties": {
-        "created": {
-          "type": "string"
-        },
-        "degree": {
-          "type": "string"
-        },
-        "end_date": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "institution": {
-          "description": "<b>DEPRECATED</b> (use institution_details)",
-          "type": "string"
-        },
-        "institution_details": {
-          "$ref": "Institution",
-          "description": "<b>BETA</b>"
-        },
-        "start_date": {
-          "type": "string"
-        },
-        "website": {
-          "type": "string"
-        }
-      }
-    },
-    "Employment": {
-      "id": "Employment",
-      "properties": {
-        "classes": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "created": {
-          "type": "string"
-        },
-        "end_date": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "institution": {
-          "description": "<b>DEPRECATED</b> (use institution_details)",
-          "type": "string"
-        },
-        "institution_details": {
-          "$ref": "Institution",
-          "description": "<b>BETA</b>"
-        },
-        "is_main_employment": {
-          "type": "boolean"
-        },
-        "position": {
-          "type": "string"
-        },
-        "start_date": {
-          "type": "string"
-        },
-        "website": {
-          "type": "string"
         }
       }
     },
@@ -347,76 +228,6 @@
         "width": {
           "format": "int32",
           "type": "integer"
-        }
-      }
-    },
-    "Institution": {
-      "id": "Institution",
-      "properties": {
-        "alt_names": {
-          "items": {
-            "$ref": "AlternativeName"
-          },
-          "type": "array"
-        },
-        "city": {
-          "type": "string"
-        },
-        "country": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "parent_id": {
-          "type": "string"
-        },
-        "profile_url": {
-          "type": "string"
-        },
-        "scival_id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "state": {
-          "type": "string"
-        },
-        "urls": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      }
-    },
-    "Location": {
-      "id": "Location",
-      "properties": {
-        "city": {
-          "type": "string"
-        },
-        "country": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "latitude": {
-          "format": "float",
-          "type": "number"
-        },
-        "longitude": {
-          "format": "float",
-          "type": "number"
-        },
-        "name": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
         }
       }
     },
@@ -463,14 +274,14 @@
         "editorships": {
           "description": "<b>DEPRECATED</b>",
           "items": {
-            "$ref": "Editorship"
+            "$ref": "Object"
           },
           "type": "array"
         },
         "education": {
           "description": "<b>DEPRECATED</b>",
           "items": {
-            "$ref": "Education"
+            "$ref": "Object"
           },
           "type": "array"
         },
@@ -480,7 +291,7 @@
         "employment": {
           "description": "<b>DEPRECATED</b>",
           "items": {
-            "$ref": "Employment"
+            "$ref": "Object"
           },
           "type": "array"
         },
@@ -499,12 +310,8 @@
           "type": "string"
         },
         "institution_details": {
-          "$ref": "Institution",
+          "$ref": "Object",
           "description": "<b>BETA</b>"
-        },
-        "is_editor": {
-          "description": "<b>DEPRECATED</b>",
-          "type": "boolean"
         },
         "last_name": {
           "type": "string"
@@ -514,7 +321,7 @@
           "type": "string"
         },
         "location": {
-          "$ref": "Location",
+          "$ref": "Object",
           "description": "<b>DEPRECATED</b>"
         },
         "marketing": {
@@ -545,9 +352,6 @@
             "$ref": "Image"
           },
           "type": "array"
-        },
-        "prefill_draft": {
-          "type": "boolean"
         },
         "privacy_restricted_view": {
           "description": "<b>DEPRECATED</b>",
@@ -627,10 +431,6 @@
         "institution_id": {
           "description": "<b>DEPRECATED</b>",
           "type": "string"
-        },
-        "is_editor": {
-          "description": "<b>DEPRECATED</b>",
-          "type": "boolean"
         },
         "last_name": {
           "type": "string"
