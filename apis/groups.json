@@ -176,6 +176,10 @@
         "owning_profile_id": {
           "type": "string"
         },
+        "pending_invitation_count": {
+          "format": "int32",
+          "type": "integer"
+        },
         "photo": {
           "$ref": "Photo"
         },
