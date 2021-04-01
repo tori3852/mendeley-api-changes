@@ -5,12 +5,11 @@
       "operations": [
         {
           "authorizations": {},
-          "deprecated": "true",
           "items": {
             "$ref": "Profile"
           },
           "method": "GET",
-          "nickname": "getProfiles",
+          "nickname": "getProfilesV2",
           "notes": "",
           "parameters": [
             {
@@ -39,7 +38,7 @@
             }
           ],
           "produces": [
-            "application/vnd.mendeley-profiles.1+json"
+            "application/vnd.mendeley-profiles.2+json"
           ],
           "responseMessages": [
             {
@@ -51,23 +50,22 @@
               "message": "Invalid request"
             }
           ],
-          "summary": "<b>V1</b> - Get profiles (Deprecated)",
+          "summary": "<b>V2</b> - Get profiles",
           "type": "array"
         }
       ],
-      "path": "/profiles"
+      "path": "/profiles/v2"
     },
     {
       "operations": [
         {
           "authorizations": {},
-          "deprecated": "true",
           "method": "GET",
-          "nickname": "getProfileForLoggedInUser",
+          "nickname": "getProfileForLoggedInUserV2",
           "notes": "",
           "parameters": [],
           "produces": [
-            "application/vnd.mendeley-profiles.1+json"
+            "application/vnd.mendeley-profiles.2+json"
           ],
           "responseMessages": [
             {
@@ -83,18 +81,17 @@
               "message": "Profile not found"
             }
           ],
-          "summary": "<b>V1</b> - Get my profile (Deprecated)",
+          "summary": "<b>V2</b> - Get my profile",
           "type": "Profile"
         },
         {
           "authorizations": {},
           "consumes": [
             "application/json",
-            "application/vnd.mendeley-profile-amendment.1+json"
+            "application/vnd.mendeley-profile-amendment.2+json"
           ],
-          "deprecated": "true",
           "method": "PATCH",
-          "nickname": "updateMyProfile",
+          "nickname": "updateMyProfileV2",
           "notes": "",
           "parameters": [
             {
@@ -106,7 +103,7 @@
             }
           ],
           "produces": [
-            "application/vnd.mendeley-profiles.1+json"
+            "application/vnd.mendeley-profiles.2+json"
           ],
           "responseMessages": [
             {
@@ -136,19 +133,18 @@
               "message": "Profile amendment is invalid"
             }
           ],
-          "summary": "<b>V1</b> -  Update my profile with the new values specified in the ProfileAmendment. <b>N.B.</b> Even though you can specify a new password (and old password) in ProfileAmendment, these fields are currently ignored. (Deprecated)",
+          "summary": "<b>V2</b> -  Update my profile with the new values specified in the ProfileAmendment. <b>N.B.</b> Even though you can specify a new password (and old password) in ProfileAmendment, these fields are currently ignored.",
           "type": "Profile"
         }
       ],
-      "path": "/profiles/me"
+      "path": "/profiles/v2/me"
     },
     {
       "operations": [
         {
           "authorizations": {},
-          "deprecated": "true",
           "method": "GET",
-          "nickname": "get",
+          "nickname": "getV2",
           "notes": "",
           "parameters": [
             {
@@ -161,7 +157,7 @@
             }
           ],
           "produces": [
-            "application/vnd.mendeley-profiles.1+json"
+            "application/vnd.mendeley-profiles.2+json"
           ],
           "responseMessages": [
             {
@@ -177,11 +173,11 @@
               "message": "Profile not found"
             }
           ],
-          "summary": "<b>V1</b> - Get a profile (Deprecated)",
+          "summary": "<b>V2</b> - Get a profile",
           "type": "Profile"
         }
       ],
-      "path": "/profiles/{id}"
+      "path": "/profiles/v2/{id}"
     }
   ],
   "basePath": "https://api.mendeley.com",
