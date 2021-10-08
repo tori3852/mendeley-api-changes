@@ -1,0 +1,489 @@
+{
+  "apiVersion": "1",
+  "apis": [
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "items": {
+            "$ref": "Profile"
+          },
+          "method": "GET",
+          "nickname": "getProfilesV2",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Catalog ID of document whose authors' profiles will be returned; the returned profiles are based on a name match and therefore approximate",
+              "name": "authored_document_catalog_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Email",
+              "name": "email",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "allowMultiple": false,
+              "description": "Scopus author id",
+              "name": "scopus_author_id",
+              "paramType": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-profiles.2+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Request successful"
+            },
+            {
+              "code": 400,
+              "message": "Invalid request"
+            }
+          ],
+          "summary": "<b>V2</b> - Get profiles",
+          "type": "array"
+        }
+      ],
+      "path": "/profiles/v2"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getProfileForLoggedInUserV2",
+          "notes": "",
+          "parameters": [],
+          "produces": [
+            "application/vnd.mendeley-profiles.2+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Profile found"
+            },
+            {
+              "code": 400,
+              "message": "No user present on oauth token"
+            },
+            {
+              "code": 404,
+              "message": "Profile not found"
+            }
+          ],
+          "summary": "<b>V2</b> - Get my profile",
+          "type": "Profile"
+        },
+        {
+          "authorizations": {},
+          "consumes": [
+            "application/json",
+            "application/vnd.mendeley-profile-amendment.2+json"
+          ],
+          "method": "PATCH",
+          "nickname": "updateMyProfileV2",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "name": "body",
+              "paramType": "body",
+              "required": false,
+              "type": "ProfileAmendment"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-profiles.2+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Profile updated"
+            },
+            {
+              "code": 400,
+              "message": "No user present on oauth token"
+            },
+            {
+              "code": 403,
+              "message": "Not allowed to change user type",
+              "responseModel": "ErrorResponse"
+            },
+            {
+              "code": 404,
+              "message": "Profile not found"
+            },
+            {
+              "code": 409,
+              "message": "Email address already in use",
+              "responseModel": "ErrorResponse"
+            },
+            {
+              "code": 422,
+              "message": "Profile amendment is invalid"
+            }
+          ],
+          "summary": "<b>V2</b> -  Update my profile with the new values specified in the ProfileAmendment. <b>N.B.</b> Even though you can specify a new password (and old password) in ProfileAmendment, these fields are currently ignored.",
+          "type": "Profile"
+        }
+      ],
+      "path": "/profiles/v2/me"
+    },
+    {
+      "operations": [
+        {
+          "authorizations": {},
+          "method": "GET",
+          "nickname": "getV2",
+          "notes": "",
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "description": "Profile ID",
+              "name": "id",
+              "paramType": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/vnd.mendeley-profiles.2+json"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "Profile found"
+            },
+            {
+              "code": 400,
+              "message": "Invalid request"
+            },
+            {
+              "code": 404,
+              "message": "Profile not found"
+            }
+          ],
+          "summary": "<b>V2</b> - Get a profile",
+          "type": "Profile"
+        }
+      ],
+      "path": "/profiles/v2/{id}"
+    }
+  ],
+  "basePath": "https://api.mendeley.com",
+  "consumes": null,
+  "models": {
+    "Discipline": {
+      "id": "Discipline",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "subdisciplines": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "id": "ErrorResponse",
+      "properties": {
+        "errorId": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Image": {
+      "id": "Image",
+      "properties": {
+        "height": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "original": {
+          "type": "boolean"
+        },
+        "url": {
+          "type": "string"
+        },
+        "width": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Photo": {
+      "id": "Photo",
+      "properties": {
+        "original": {
+          "type": "string"
+        },
+        "square": {
+          "type": "string"
+        },
+        "standard": {
+          "type": "string"
+        }
+      }
+    },
+    "Profile": {
+      "id": "Profile",
+      "properties": {
+        "academic_status": {
+          "type": "string"
+        },
+        "biography": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "discipline": {
+          "$ref": "Discipline",
+          "description": "<b>DEPRECATED</b>"
+        },
+        "disciplines": {
+          "items": {
+            "$ref": "Discipline"
+          },
+          "type": "array"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "editorships": {
+          "description": "<b>DEPRECATED</b>",
+          "items": {
+            "$ref": "Object"
+          },
+          "type": "array"
+        },
+        "education": {
+          "description": "<b>DEPRECATED</b>",
+          "items": {
+            "$ref": "Object"
+          },
+          "type": "array"
+        },
+        "email": {
+          "type": "string"
+        },
+        "employment": {
+          "description": "<b>DEPRECATED</b>",
+          "items": {
+            "$ref": "Object"
+          },
+          "type": "array"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "folder": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "institution": {
+          "description": "<b>BETA</b>",
+          "type": "string"
+        },
+        "institution_details": {
+          "$ref": "Object",
+          "description": "<b>BETA</b>"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "link": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "Object",
+          "description": "<b>DEPRECATED</b>"
+        },
+        "marketing": {
+          "type": "boolean"
+        },
+        "member_type": {
+          "description": "<b>BETA</b>",
+          "type": "string"
+        },
+        "middle_initials": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "orcid_id": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "personal_website": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "photo": {
+          "$ref": "Photo",
+          "description": "<b>DEPRECATED</b>"
+        },
+        "photos": {
+          "items": {
+            "$ref": "Image"
+          },
+          "type": "array"
+        },
+        "privacy_restricted_view": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "boolean"
+        },
+        "research_interests": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "research_interests_list": {
+          "description": "<b>BETA</b>",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scopus_author_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "user_type": {
+          "$ref": "com.mendeley.profiles.api.UserType",
+          "enum": [
+            "normal",
+            "devpartner",
+            "advisor",
+            "lead",
+            "staff",
+            "admin"
+          ]
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "visibility": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "web_user_id": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "ProfileAmendment": {
+      "id": "ProfileAmendment",
+      "properties": {
+        "academic_status": {
+          "type": "string"
+        },
+        "biography": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "disciplines": {
+          "items": {
+            "$ref": "Discipline"
+          },
+          "type": "array"
+        },
+        "email": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "folder": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "institution_id": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "location_id": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "marketing": {
+          "type": "boolean"
+        },
+        "middle_initials": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "old_password": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "personal_website": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "research_interests_list": {
+          "description": "<b>DEPRECATED</b>",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sync_all_documents_files": {
+          "type": "string"
+        },
+        "sync_my_publications_files": {
+          "type": "string"
+        },
+        "title": {
+          "description": "<b>DEPRECATED</b>",
+          "type": "string"
+        },
+        "user_type": {
+          "$ref": "com.mendeley.profiles.api.UserType",
+          "enum": [
+            "normal",
+            "devpartner",
+            "advisor",
+            "lead",
+            "staff",
+            "admin"
+          ]
+        }
+      }
+    }
+  },
+  "produces": null,
+  "resourcePath": "/profiles",
+  "swaggerVersion": "1.2"
+}
