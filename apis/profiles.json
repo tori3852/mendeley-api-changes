@@ -181,7 +181,9 @@
     }
   ],
   "basePath": "https://api.mendeley.com",
-  "consumes": null,
+  "consumes": [
+    "application/vnd.mendeley-ae-sync.1+json"
+  ],
   "models": {
     "Discipline": {
       "id": "Discipline",
@@ -483,7 +485,9 @@
       }
     }
   },
-  "produces": null,
+  "produces": [
+    "application/json"
+  ],
   "resourcePath": "/profiles",
   "swaggerVersion": "1.2"
 }
